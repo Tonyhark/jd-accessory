@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title></title>
+
+    <link rel="stylesheet" href="../css/css.css"/>
+</head>
+<body>
+<script type="text/javascript" src="../js/spin.min.js"></script>
+<header>
+    <ul id="brands">
+        <textarea class="J_template">
+
+            {{#initBrandName}}
+            <li><a href="javascript:;" class="brandLink">{{brandName}}</a></li>
+            {{/initBrandName}}
+
+        </textarea>
+
+
+    </ul>
+    <ul id="models">
+        <li><a href=""></a></li>
+    </ul>
+    <ul id="accessories">
+        <li><a href=""></a></li>
+    </ul>
+</header>
+<div id="search-cntr" class="search-cntr">
+    <div class="sorting">
+        <a href="javascript:;">销量</a>
+        <a href="javascript:;">好评</a>
+        <a href="javascript:;">价格</a>
+        <a href="javascript:;">新品</a>
+    </div>
+    <div id="goods-list">
+        <textarea class="J_template">
+
+            {{> goods}}
+
+        </textarea>
+    </div>
+    <div class="btm-bar">
+        <a href="javascript:;" id="refresh">加载更多</a>
+    </div>
+</div>
+
+
+
+<script src="../../require.js"></script>
+<script src="http://h5.m.jd.com/active/common/ping.min.js"></script>
+<script src="../config.js?v=@@version"></script>
+<script>
+    require(['app/index']);
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+    <section class="c_item_box">
+            <div class="c_item_tit">
+                <span class="c_item_tit_l"><i class="icon icon_impress"></i>印象标签</span>
+                <a href="javascript:;" id="changeImpress" class="c_item_tit_r J_change" data-url="#"><i class="icon icon_refash"></i>换一批</a>
+            </div>
+            <div id="impressContent" class="c_item_content">
+                {{#data}}
+                <span class="c_impress impressTag {{#isHit}}c_impress_on{{/isHit}} {{{labelWidth}}} J_label_item" data-name="{{impressionName}}" data-id="{{ilid}}">{{impressionName}}<em>{{{renderHits}}}</em></span>
+                {{/data}}
+            </div>
+        </section>

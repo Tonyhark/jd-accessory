@@ -1,0 +1,21 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "dir": "v1",
+  "description": "",
+  "min_file": "test.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-requirejs": "~0.4.3",
+    "grunt-contrib-uglify": "~0.3.2",
+    "grunt-replace": "^0.7.8",
+    "grunt-sftp-deploy": "^0.1.0",
+    "grunt-ssh": "^0.11.2"
+  }
+}

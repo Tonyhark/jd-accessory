@@ -1,0 +1,25 @@
+<div class="c_comment_box c_comment_order_info">
+	<p class="c_comment_info">订单号：{{orderInfo.orderId}}</p>
+	<p class="c_comment_info">订单金额：<strong>&yen;{{orderInfo.price}}</strong><span class="c_comment_info_stauts" id="J_evaluated" style="display:none"><i></i>已评价</span></p>
+</div>
+<div class="c_comment_box">
+	<div class="c_item_content">
+		<!-- 这里是只有一个的样式 多了个c_item_pdlist_wrap_one-->
+		<div id="single" class="c_item_pdlist_wrap c_item_pdlist_wrap_one">
+		   {{#productinfo}}
+			<ul class="c_item_pdlist">  
+				<li><a><img src="{{imageurl}}" alt="" width="65px" height="80px"></a></li>
+			</ul>
+			<div class="c_item_pdlist_info">{{wname}}</div>
+			{{/productinfo}}
+		</div>
+		<!-- 这里是有多个的样式 c_item_pdlist 默认的宽度是800px-->
+		<div id="wrapper" class="c_item_pdlist_wrap">
+			<ul class="c_item_pdlist">
+			    {{#wareInfoList}}
+				<li><a><img src="{{imageurl}}" alt="" width="65px" height="80px"></a></li>
+				{{/wareInfoList}}
+			</ul>
+		</div>
+	</div>
+</div>

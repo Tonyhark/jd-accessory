@@ -1,0 +1,14 @@
+ <!-- 列表1开始 -->
+            {{#data}}
+            <li>
+                <div class="c_photo"><img src="{{jdUserImage}}" onerror="this.src='../img/header_small.png'" alt="" width="50" height="50"></div>
+                <div class="c_gifts_l">
+                    <p class="c_l_name">{{jdUserName}}</p>
+                    <p class="c_cost">累计消费<span class="c_gift_price">{{giftSumPrice}}个京豆</span></p>
+                </div>
+                <div class="c_gifts_r">
+                    <p class="c_send">送出<i>{{giftSumCount}}</i>份</p>
+                    <p class="c_date">{{historyDate}}</p>
+                </div>
+            </li>
+           {{/data}}
