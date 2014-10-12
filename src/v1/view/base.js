@@ -128,7 +128,8 @@ define([
 					} else if (this.fill && this.fill == 'before') { //加到前面
 						template.after(renderHtml);
 					} else {
-						template.after(renderHtml).remove();
+						template.siblings().remove();
+                        template.after(renderHtml);
 					}
 				}
 			}

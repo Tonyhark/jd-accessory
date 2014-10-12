@@ -30,23 +30,21 @@
 </header>
 <div id="search-cntr" class="search-cntr">
     <div class="sorting">
-        <a href="javascript:;">销量</a>
-        <a href="javascript:;">好评</a>
-        <a href="javascript:;">价格</a>
-        <a href="javascript:;">新品</a>
+        <a href="javascript:;" class="sroting-btn sorting-current" data-column="0">销量</a>
+        <a href="javascript:;" class="sroting-btn" data-column="2">好评</a>
+        <a href="javascript:;" class="sroting-btn" data-column="1">价格</a>
+        <a href="javascript:;" class="sroting-btn" data-column="3">新品</a>
     </div>
     <div id="goods-list">
         <textarea class="J_template">
-
             {{> goods}}
-
         </textarea>
     </div>
     <div class="btm-bar">
         <a href="javascript:;" id="refresh">加载更多</a>
     </div>
-</div>
 
+</div>
 
 
 <script src="../../require.js"></script>

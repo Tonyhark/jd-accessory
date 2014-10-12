@@ -10,7 +10,7 @@ define([
     modelData.callBack='jsonp1411965756126';
     modelData._=1411965756291;
     var sortingData ={};
-    sortingData.pageNo = 1;
+    sortingData.pageNo = 0;
     sortingData.thirdTypeId=3;
     sortingData.sku=1023433;
     sortingData.brandId='';

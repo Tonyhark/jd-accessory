@@ -23,9 +23,13 @@ define([
                 goodsListView = new View({
                     model: model,
                     el: '#search-cntr',
-                    tpl: {
+                    tpl:  {
                         goods: cTpl
                     }
+//                    ,
+//                    fill:'after'
+//                    ,
+//                    renderType: 'normal'
                 });
 
             var orderid = $.url.getParam('orderid');
@@ -35,7 +39,7 @@ define([
 
                 if (typeof ret == 'object') {
 
-                    console.log(ret.resultQuery)
+                    console.log({'response' :ret.resultQuery})
                     goodsListView.render(ret.resultQuery);
 
                     return dtd.resolve(ret);
@@ -52,6 +56,9 @@ define([
                 alert('网络不稳定，休息一下，稍后试试~');
                 return dtd.reject();
             });
+
+
+
 
             return dtd.promise();
 

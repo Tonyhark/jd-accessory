@@ -15,8 +15,12 @@ ul li{
     clear: both;}
 .sorting a{
     display: inline-block;
-    margin: 0 15px;}
-
+    margin: 0 15px;
+    color: #666;}
+.sorting .sorting-current{
+    background: #3333aa;
+    color: #ffffff;
+}
 .goods-list{
     overflow: hidden;
 }
