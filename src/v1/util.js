@@ -9,6 +9,7 @@ define([
 		}
 		return strTemp + Source;
 	}　　　　
+
 	return {
 		formatTime: function(time) {
 			console.log(time);
