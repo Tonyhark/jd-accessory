@@ -9,37 +9,52 @@
 </head>
 <body>
 <script type="text/javascript" src="../js/spin.min.js"></script>
-<header>
-    <ul id="brands">
-        <textarea class="J_template">
-
-            {{#initBrandName}}
-            <li><a href="javascript:;" class="brandLink">{{brandName}}</a></li>
-            {{/initBrandName}}
-
-        </textarea>
-
-
-    </ul>
-    <ul id="models">
-        <li><a href=""></a></li>
-    </ul>
-    <ul id="accessories">
-        <li><a href=""></a></li>
-    </ul>
-</header>
 <div id="search-cntr" class="search-cntr">
+    <header id="J_Filter">
+        <h2>筛选11</h2>
+        <ul id="brands">
+            <textarea class="J_template">
+
+                {{#initBrandName}}
+                <li><a href="javascript:;" class="brandLink">{{brandName}}</a></li>
+                {{/initBrandName}}
+
+            </textarea>
+
+
+        </ul>
+        <ul id="models">
+            <textarea class="J_template">
+
+                {{#styleByBrandName}}
+                <li><a href="javascript:;" class="brandLink">{{style}}</a></li>
+                {{/styleByBrandName}}
+
+            </textarea>
+        </ul>
+        <ul id="accessories">
+            <textarea class="J_template">
+
+                {{#initAccessoresType}}
+                <li><a href="javascript:;" class="brandLink">{{thirdTypeName}}</a></li>
+                {{/initAccessoresType}}
+
+            </textarea>
+        </ul>
+    </header>
+
     <div class="sorting">
+        <h2>排序</h2>
         <a href="javascript:;" class="sroting-btn sorting-current" data-column="0">销量</a>
         <a href="javascript:;" class="sroting-btn" data-column="2">好评</a>
         <a href="javascript:;" class="sroting-btn" data-column="1">价格</a>
         <a href="javascript:;" class="sroting-btn" data-column="3">新品</a>
     </div>
-    <div id="goods-list">
+    <ol id="goods-list">
         <textarea class="J_template">
             {{> goods}}
         </textarea>
-    </div>
+    </ol>
     <div class="btm-bar">
         <a href="javascript:;" id="refresh">加载更多</a>
     </div>

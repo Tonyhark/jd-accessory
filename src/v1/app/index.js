@@ -7,8 +7,10 @@ define([
 
 
     var modelData = {};
-    modelData.callBack='jsonp1411965756126';
+    modelData.brandName='苹果';
+    //modelData.callBack='jsonp1411965756126';
     modelData._=1411965756291;
+
     var sortingData ={};
     sortingData.pageNo = 0;
     sortingData.thirdTypeId=3;
@@ -23,10 +25,10 @@ define([
         "": function() {
 
             document.title = '配件中心';
-
+            brandsList.init(modelData);
             goodsList.init(sortingData);
             //初始化品牌列表
-            brandsList.init(modelData);
+
 
         }
 

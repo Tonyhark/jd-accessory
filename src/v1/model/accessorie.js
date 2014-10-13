@@ -22,7 +22,18 @@ define([
             return Model.superClass.prototype.fetch.call(this, options);
 
         },
-
+        typeList : function(data, options){
+            options = options || {};
+            options.url = urlConfig.apiUrl + '/accessoriesEntrance/styleByByBrandName.jsonp';
+            options.data= data;
+            return Model.superClass.prototype.fetch.call(this, options);
+        },
+        accessoresList: function(data, options){
+            options = options || {};
+            options.url = urlConfig.apiUrl + '/accessoriesEntrance/initAccessoresType.jsonp';
+            options.data= data;
+            return Model.superClass.prototype.fetch.call(this, options);
+        },
         goodsList: function(data,options){
             options = options || {};
             options.url = urlConfig.apiUrl + '/accessorie/page.jsonp';

@@ -19,57 +19,49 @@ define([
         refreshHandler: function (e) {
             var that = this;
             that.fill = 'after';
+            that.reqData.pageNo += 1;
 
-            console.log(that.model.options)
+            this.model.goodsList(that.reqData).done(function (res) {
 
+                if(res.resultQuery.list.length > 0){
+                    that.render(res.resultQuery);
 
-            //var sortingData =that.getData();
-            //sortingData.column += 1;
-            //var pageNo = sortingData.list.
+                    // 判断更多
+                    if(!that.reqData.pageNo < res.resultQuery.allPageNo){
+                        that.$('#refresh').hide();
+                    }
 
+                }
 
-            this.model.goodsList(sortingData).done(function (res) {
-
-
-                that.render(res.resultQuery)
             });
         },
         afterRender: function (data) {
 
             return this;
         },
-        setData: function (ele) {
-            var data = {};
-
-
-            data.pageNo = 0;
-            data.thirdTypeId = 3;
-            data.sku = 1023433;
-            data.brandId = '';
-            data.column = this.$('.sorting-current');
-            data.sp = 'asc';
-            data.condition = '';
-            data.priceCondition = '';
-            this.reqData = data;
-        },
         sortHandler: function (e) {
             var $target = $(e.currentTarget),
                 that = this,
                 columeValue = $target.attr('data-column'),
-                data;
-            data = that.reqData;
-
-             console.log(data);
+                data = that.reqData;
+            that.fill = '';
+            console.log(data);
             $.extend(data,{
-                column: columeValue
+                column: columeValue,
+                pageNo: 0  //页数归零
             });
-
 
 
             this.model.goodsList(data).done(function (res) {
 
-                that.render(res.resultQuery);
+                that.render(res.resultQuery,'#goods-list');
                 $target.addClass('sorting-current').siblings().removeClass('sorting-current');
+                // 判断更多
+                if(!data.pageNo < res.resultQuery.allPageNo){
+                    that.$('#refresh').hide();
+                }else{
+                    that.$('#refresh').show();
+                }
             });
 
         },

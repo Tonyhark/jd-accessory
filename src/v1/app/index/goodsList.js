@@ -42,6 +42,11 @@ define([
                     console.log({'response' :ret.resultQuery})
                     goodsListView.render(ret.resultQuery);
 
+                    // 判断更多
+                    if(!data.pageNo < ret.resultQuery.allPageNo){
+                        goodsListView.$('#refresh').hide();
+                    }
+
                     return dtd.resolve(ret);
                 } else {
 

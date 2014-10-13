@@ -92,8 +92,9 @@ define([
 			return this;
 		},
 
-		render: function(data,html) {
+		render: function(data,locator) {
 			this.renderData = data;
+            var renderHtml, templates;
 			data.CONFIG = urlConfig;
 			if ($.isFunction(this.beforeRender)) {
 				this.beforeRender(data);
@@ -102,7 +103,7 @@ define([
 
 			if (this.renderType == 'normal') {
 				//原来的，单模板方式
-				var renderHtml = $.mustache.render(this.tpl, view);
+				 renderHtml = $.mustache.render(this.tpl, view);
 
 				if (this.fill && this.fill == 'after') {
 					this.$el.append(renderHtml);
@@ -114,22 +115,27 @@ define([
 				}
 			} else {
 				//使用textarea方式 ，推荐使用
-				var templates = this.$el.find('.J_template');
+                if(typeof locator == 'string' ){
+                    templates = this.$el.find(locator).find('.J_template');
+                }else{
+                    templates = this.$el.find('.J_template');
+                }
+
 				for (var i = 0, count = templates.length; i < count; i++) {
 					var template = $(templates[i]);
 					if (typeof(this.tpl) == 'object') {
-						var renderHtml = $.mustache.render(template.text(), view, this.tpl);
+						 renderHtml = $.mustache.render(template.text(), view, this.tpl);
 					} else {
-						var renderHtml = $.mustache.render(template.text(), view);
+						 renderHtml = $.mustache.render(template.text(), view);
 					}
 
-					if (this.fill && this.fill == 'after') { //加到后面
-						template.before(renderHtml);
+					if (this.fill && this.fill == 'after') { //加到后面 需要考虑会有动态修改 before after replace 的情况
+						template.parent().prepend(renderHtml);
 					} else if (this.fill && this.fill == 'before') { //加到前面
-						template.after(renderHtml);
+						template.parent().append(renderHtml);
 					} else {
 						template.siblings().remove();
-                        template.after(renderHtml);
+                        template.before(renderHtml);
 					}
 				}
 			}

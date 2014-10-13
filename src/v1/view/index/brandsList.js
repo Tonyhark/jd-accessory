@@ -3,8 +3,7 @@
  */
 define([
     'common',
-    'view/base',
-    'common/iscroll'
+    'view/base'
 ], function($, BaseView) {
     var View = $.util.inherit(BaseView);
     $.extend(View.prototype, {
