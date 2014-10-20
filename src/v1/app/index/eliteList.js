@@ -1,15 +1,12 @@
 /**
- * Created by Administrator on 2014/10/10.
- */
-/**
- * 品牌列表
+ * Created by Administrator on 2014/10/20.
  */
 define([
     'common',
     'common/store',
     'model/accessorie',
-    'view/index/brandsList',
-    'text!tpl/index/comment.mustache',
+    'view/index/eliteList',
+    'text!tpl/index/elite.mustache',
     'view/widget/alert'
 ], function($, store, Model, View, cTpl, alertView) {
     return {
@@ -17,11 +14,11 @@ define([
             dtd = $.util.Deferred();
 
             var model = new Model(),
-                brandsListView = new View({
+                eliteListView = new View({
                     model: model,
-                    el: '#J_Menu',
+                    el: '#J_EliteList',
                     tpl: {
-                        comment: cTpl
+                        elite: cTpl
                     }
                 }),
                 filterData = {
@@ -33,7 +30,7 @@ define([
 
             //var orderid = $.url.getParam('orderid');
 
-            model.brandsList(data).done(function(ret) {
+            model.eliteList(data).done(function(ret) {
 
 
                 if (typeof ret == 'object') {
@@ -45,7 +42,7 @@ define([
                         model.accessoresList(data).done(function(ret){
 
                             filterData.initAccessoresType = ret.initAccessoresType;
-                            brandsListView.render(filterData);
+                            eliteListView.render(filterData);
 
                         });
 

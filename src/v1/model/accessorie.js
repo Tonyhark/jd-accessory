@@ -42,6 +42,27 @@ define([
             return Model.superClass.prototype.fetch.call(this, options);
         },
 
+        //获取精品配件
+        eliteList: function(data,options){
+            options = options || {};
+            //todo 修改路径
+            options.url = urlConfig.apiUrl + '/accessoriesEntrance/initAccessoresType.jsonp';
+            options.data= data;
+            return Model.superClass.prototype.fetch.call(this, options);
+        },
+        // 获取筛选
+        filterData: function(data,options){
+            options = options || {};
+            //todo 修改路径
+            options.url = urlConfig.apiUrl + '/accessoriesEntrance/initAccessoresType.jsonp';
+            options.data= data;
+            return Model.superClass.prototype.fetch.call(this, options);
+
+        },
+
+
+
+
         //掌上京东展示配送员基本信息
         deliveryInfo: function(data, options) {
             // this.retJSON = {

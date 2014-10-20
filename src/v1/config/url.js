@@ -6,7 +6,7 @@ define(function() {
 		var mainDomain = 'http://rs.jd.com';
 		//var baseUrl = mainDomain + '/html/courier/' + dir +'/v1/html' ;
 		var apiUrl = mainDomain;
-
+        
 		var re = {
 			//baseUrl: baseUrl,
 			mainDomain: mainDomain,
