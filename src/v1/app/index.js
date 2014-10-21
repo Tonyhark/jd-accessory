@@ -1,10 +1,11 @@
 define([
     'app/index/brandsList',
     'app/index/goodsList',
+    'app/index/attrPanel',
     'util'
-], function(brandsList, goodsList,util) {
+], function(brandsList, goodsList,attrPanel,util) {
     var info = {};
-
+    console.log($)
 
     var modelData = {};
     modelData.brandName='苹果';
@@ -27,6 +28,7 @@ define([
             document.title = '配件中心';
             brandsList.init(modelData);
             goodsList.init(sortingData);
+            attrPanel.init();
             //初始化品牌列表
 
 
