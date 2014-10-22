@@ -1,15 +1,32 @@
 define([
+    'app/index/defaultList',
     'app/index/brandsList',
     'app/index/goodsList',
     'app/index/attrPanel',
     'util'
-], function(brandsList, goodsList,attrPanel,util) {
+], function(defaultList,brandsList, goodsList,attrPanel,util) {
     var info = {};
-    console.log($)
+    if ($.url.getParam('d_brand')) {
+        var d_brand = $.url.getParam('d_brand');
+    } else {
+        alert('缺少必须参数');
+        return;
+    }
 
-    var modelData = {};
+    if ($.url.getParam('d_model')) {
+        var d_model = util.stringToHex($.url.getParam('d_model'));
+    } else {
+        alert('缺少必须参数');
+        return;
+    }
+
+    var phoneData = {};
+    phoneData.d_brand = d_brand;
+    phoneData.d_model = d_model;
+
+
+    var modelData = {}
     modelData.brandName='苹果';
-    //modelData.callBack='jsonp1411965756126';
     modelData._=1411965756291;
 
     var sortingData ={};
@@ -26,11 +43,14 @@ define([
         "": function() {
 
             document.title = '配件中心';
+
+            defaultList.init().fail(function(error){
+                alert('在index中的报错');
+            });
             brandsList.init(modelData);
             goodsList.init(sortingData);
             attrPanel.init();
             //初始化品牌列表
-
 
         }
 

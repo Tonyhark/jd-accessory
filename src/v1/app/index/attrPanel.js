@@ -5,8 +5,8 @@ define([
     'common',
     'common/store',
     'model/accessorie',
-    'view/index/goodsList',
-    'text!tpl/index/goods.mustache',
+    'view/index/attrPanel',
+    //todo 设置筛选项模板 'text!tpl/index/attrOptions.mustache',
     'view/widget/alert'
 ], function($, store, Model, View, cTpl, alertView) {
     return {
@@ -17,46 +17,7 @@ define([
                 attrPanelView = new View({
                     model: model,
                     el: '#J_AttrPane'
-//                    ,
-//                    tpl:  {
-//                        goods: cTpl
-//                    }
-//                    ,
-//                    fill:'after'
-//                    ,
-//                    renderType: 'normal'
                 });
-
-
-
-            var orderid = $.url.getParam('orderid');
-
-            $('#J_AttrTrigger').click(function(){
-                 var data = {};
-                data.thirdTypeId = '10',
-                data.sku = '496292';
-
-                model.attrPanel(data).done(function(res){
-
-                    console.log(res);
-
-                    var attrList = res.propList;
-
-                    attrPanelView.render(res)
-
-
-                });
-
-
-
-
-            });
-
-
-
-
-
-
 
         }
     }

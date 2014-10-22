@@ -46,4 +46,10 @@ ul li{
 .J_template{
     display: none;
 }
-#J_AttrPane {}
+#J_AttrPane {
+    overflow: hidden;}
+
+.attr-second {
+    display: none;
+
+}

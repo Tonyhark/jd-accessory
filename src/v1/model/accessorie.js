@@ -43,17 +43,17 @@ define([
         },
 
         //获取精品配件
-        eliteList: function(data,options){
+        defaultList: function(data,options){
             options = options || {};
             //todo 修改路径
-            options.url = urlConfig.apiUrl + '/accessoriesEntrance/initAccessoresType.jsonp';
+            options.url = 'http://gw.m.360buy.com/client.action';
             options.data= data;
             return Model.superClass.prototype.fetch.call(this, options);
         },
         // 获取筛选
         attrPanel: function(data,options){
             options = options || {};
-            //todo 修改路径 http://rs.jd.com/accessorie/center.json?sku=496292&thirdTypeId=10
+            //路径 http://rs.jd.com/accessorie/center.json?sku=496292&thirdTypeId=10
             options.url = urlConfig.apiUrl + '/accessorie/center.jsonp';
             options.data= data;
             return Model.superClass.prototype.fetch.call(this, options);
