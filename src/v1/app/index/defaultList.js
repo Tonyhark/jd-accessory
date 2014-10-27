@@ -6,7 +6,7 @@ define([
     'common/store',
     'model/accessorie',
     'view/index/defaultList',
-    //todo 设置筛选项模板 'text!tpl/index/attrOptions.mustache',
+    'text!tpl/index/defaultList.mustache',
     'view/widget/alert'
 ], function ($, store, Model, View, cTpl, alertView) {
     return {
@@ -17,22 +17,32 @@ define([
             var model = new Model(),
                 defaultListView = new View({
                     model: model,
-                    el: '#J_DefaultList'
-//                    tpl:  {
-//                        goods: cTpl
-//                    }
+                    el: '#J_DefaultList',
+                    tpl:  {
+                        defaultList: cTpl
+                    }
                 });
 
             var reqData = {
-                functionId:'searchCatelogy',
-                partner:'apple',
-                area:'1_2800_2849_0',
-                body:'{"pagesize":"20","page":"1","catelogyId":"655","isLoadPromotion":true,"isLoadAverageScore":true}'
+                functionid:'searchCatelogy',
+                //手机饰品 11302
+                body:'{"pagesize":"20","page":"1","catelogyId":"868","isLoadPromotion":true,"isLoadAverageScore":true}'
             };
 
-            model.defaultList(reqData,{dataType: 'json'}).done(function(res){
+            model.defaultList(reqData).done(function(res){
                 console.log(res);
-                return dtd.resolve(ret);
+
+                if(res.code==0){
+                    defaultListView.render(res)
+                }else{
+                    var alert = new alertView();
+                    alert.render({
+                        'msg': res.errmsg
+                    });
+                }
+
+
+                return dtd.resolve(res);
             }).fail(function(error){
                 alert('网络不稳定，休息一下，稍后试试~');
 

@@ -32,8 +32,6 @@ define([
             brandsList.init(modelData);
             goodsList.init(sortingData);
             //初始化品牌列表
-
-
         }
 
     })

@@ -57,14 +57,27 @@ define([
         //获取创意配件 手机饰品 这里通过参数拉取2种3级类目
         defaultList: function(data,options){
             options = options || {};
-            //todo 修改路径
-            options.url = urlConfig.apiUrl + '/h5api.jsp';
+
+            options.url = urlConfig.transitApiUrl + '/h5api.jsp';
+            options.data= data;
+            return Model.superClass.prototype.fetch.call(this, options);
+        },
+        // 根据sku拉取所有配件分组数据
+        accessoryGroup: function(data,options){
+            options = options || {};
+
+            options.url = urlConfig.apiUrl + '/accessorie/service.jsonp';
+            options.data= data;
+            return Model.superClass.prototype.fetch.call(this, options);
+        },
+        // 根据手机型号 拉取sku
+        skuNumber: function(data,options){
+            options = options || {};
+
+            options.url = 'http://10.24.76.129:8080/h5sh/h5api.jsp';
             options.data= data;
             return Model.superClass.prototype.fetch.call(this, options);
         }
-        //todo 根据sku拉取所有配件分组数据
-        //todo 根据手机型号 拉取sku
-
     });
 
     return Model;

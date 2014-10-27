@@ -39,7 +39,6 @@ define([
 
                 if (typeof ret == 'object') {
 
-                    console.log({'response' :ret.resultQuery})
                     goodsListView.render(ret.resultQuery);
 
                     // 判断更多
