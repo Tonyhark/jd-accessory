@@ -212,3 +212,6 @@ body{overflow-x: hidden;}
 
 .menu .fittings {
     display: none;}
+.select-sub{display: none;}
+.item-selected .select-sub{
+    display: inline;}

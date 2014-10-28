@@ -76,11 +76,20 @@ define([
 
             //todo 点击tag事件
             $(document).on('click','.tag-model',function(){
-                var $tar = $(this);
+                var $tar = $(this),
+                    $li = $tar.parents('.item-brand'),
+                    selLabel = $li.find('.select-sub'),
+                    sku = $tar.attr('data-sku'),
+                    model = $tar.html();
                 var data = {};
-                data.sku = $tar.attr('data-sku');
-                renderAccGroup(data).done(function(res){
 
+                data.sku = sku;
+                renderAccGroup(data).done(function(res){
+                    $tar.addClass('cur');
+                    $li.removeClass('cur').addClass('item-selected').attr('data-sku',sku).siblings().attr('data-sku','').removeClass('item-selected');
+                    selLabel.html($tar.html());
+
+                    $('#menu-trigger-model').click().find('span').html(model);
                 });
             });
 

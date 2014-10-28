@@ -42,14 +42,14 @@ define([
                 selectedLiClass = 'item-selected',
                 reqData = {},
                 $li = $tar.parent(),
-                isSelected = $li.hasClass(selectedLiClass);
+                selectedSku = $li.attr('data-sku');
 
             $li.siblings('li').removeClass(openedLiClass)
             if($li.hasClass(openedLiClass)){
                 $li.removeClass(openedLiClass)
 
             }else{
-                if(!isSelected){
+
                     var brandName = $tar.attr('data-brand');
                     var $temp = $('<div/>');
                     reqData.brandName = brandName;
@@ -61,12 +61,14 @@ define([
                                 'class': 'tag-model'
                             }).appendTo($temp);
                         });
+                        if(selectedSku){
+                            $temp.find('[data-sku="'+ selectedSku +'"]').addClass('cur');
+                        }
+
                         $subListWrap.html($temp.html());
                         $li.addClass(openedLiClass);
                     });
-                }else{
-                    $li.addClass(openedLiClass);
-                }
+
             }
 
         },
@@ -88,8 +90,8 @@ define([
             if(data.phone.brand&&data.phone.sku){
                 var brandName = data.phone.brand,
                     sku = data.phone.sku;
-                this.$('li[data-brand="'+ brandName +'"]').addClass('item-selected');
-                this.$('span[data-sku="'+ brandName +'"]').addClass('style');
+                this.$('li[data-brand="'+ brandName +'"]').attr('data-sku',sku);
+
             }
         }
     });
