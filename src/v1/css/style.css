@@ -28,7 +28,9 @@ a:focus,input:focus{
 
 /*main*/
 body{overflow-x: hidden;}
-.wrapper{width: 100%; height: 100%; z-index: 99; overflow-x: hidden;}
+.wrapper{width: 100%; height: 100%; z-index: 99;
+/*overflow-x: hidden;*/
+}
 .content{width: 100%; z-index:1; padding-top: 0px; position: relative;}
 .btn{border: 1px solid #D7D7D7; border-radius: 4px; width: 145px; height: 33px; line-height: 33px; text-align: center; display: block; margin: 0 auto; font-size: 15px; background-color: #FFF;}
 .btn-red{width: 72px; height: 30px; line-height: 30px; background-color: #E4393C; color: #FFF; font-size: 12px; border: none;}
@@ -121,8 +123,7 @@ body{overflow-x: hidden;}
 /*index*/
 /*todo 恢复css*/
 .index .content{opacity: 1; -webkit-transition: all .6s ease;
-    /*height: 300px;*/
-    overflow: hidden;}
+    /*height: 300px;*/}
 .index .content.show{opacity: 1; height: 100%; overflow: visible;}
 .device-anim{position: absolute; top: 0; left: 0; width: 100%; height: 408px; background-color: #D8505C; z-index: 96; color: #FFF; -webkit-transition: all .6s ease;}
 .device-anim.back{-webkit-transform: translateY(-100%);}
@@ -207,4 +208,7 @@ body{overflow-x: hidden;}
 
 /*template*/
 .J_template{
+    display: none;}
+
+.menu .fittings {
     display: none;}

@@ -23,43 +23,66 @@ define([
                     }
                 });
 
-            model.accessoryGroup(data).done(function (res) {
+            var mapObj = function(obj){
 
-                if (typeof res == 'object') {
-                    console.log(res);
+                var resultObj = {};
+                resultObj.accessoryList = [];
 
-                    var accData = {};
-                    accData.accessoryList = [];
-
-                    $.each(res.accessoryList, function (i, v) {
-                        var accId = v.thirdTypeId;
-                        //筛出需要的5种配件
-                        if (accId == 3 || accId == 4 || accId == 13 || accId == 10 || accId == 6) {
-                            //每种配件最多4个
-                            if (v.accessoryList.length > 4) {
-                                v.accessoryList = v.accessoryList.slice(0, 4);
-                            }
-                            accData.accessoryList.push(v);
+                $.each(obj.accessoryList, function (i, v) {
+                    var accId = v.thirdTypeId;
+                    //筛出需要的5种配件
+                    if (accId == 3 || accId == 4 || accId == 13 || accId == 10 || accId == 6) {
+                        //每种配件最多4个
+                        if (v.accessoryList.length > 4) {
+                            v.accessoryList = v.accessoryList.slice(0, 4);
                         }
-                    });
+                        resultObj.accessoryList.push(v);
+                    }
+                });
 
-                    accGrouptView.render(accData);
-                    console.log(accData)
-                    return dtd.resolve(res);
-                } else {
+                return resultObj;
+            };
 
-                    var alert = new alertView();
-                    alert.render({
-                        'msg': res.msg
-                    });
+            var renderAccGroup = function(data){
+                model.accessoryGroup(data).done(function (res) {
 
-                    return dtd.reject(res);
-                }
-            }).fail(function (error) {
-                alert('网络不稳定，休息一下，稍后试试~');
-                return dtd.reject();
+                    if (typeof res == 'object') {
+
+                        var phoneStyle = res.mainproduct.style
+                        var accData = mapObj(res);
+
+                        accGrouptView.render(accData);
+                        console.log(accData)
+                        return dtd.resolve(res);
+                    } else {
+
+                        var alert = new alertView();
+                        alert.render({
+                            'msg': res.msg
+                        });
+
+                        return dtd.reject(res);
+                    }
+                }).fail(function (error) {
+                    alert('网络不稳定，休息一下，稍后试试~');
+                    return dtd.reject();
+                });
+
+                return dtd.promise();
+            };
+
+            renderAccGroup(data);
+
+
+            //todo 点击tag事件
+            $(document).on('click','.tag-model',function(){
+                var $tar = $(this);
+                var data = {};
+                data.sku = $tar.attr('data-sku');
+                renderAccGroup(data).done(function(res){
+
+                });
             });
-
 
             return dtd.promise();
 

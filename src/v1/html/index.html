@@ -4,170 +4,103 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
     <title></title>
-    :
-    <style>
-
-    </style>
-    <style>
-        body{}
-    </style>
     <link rel="stylesheet" href="../css/style.css"/>
 </head>
 <body class="index">
 <script type="text/javascript" src="../js/spin.min.js"></script>
 <!-- S 主内容 -->
 <div class="wrapper">
-<!-- S 内容 -->
-<div class="content">
-<!-- S topbar -->
-<div class="topbar">
-    <div class="menu">
-        <ul>
-            <li class="fittings"><span>所有配件</span></li>
-            <li class="device"><span>IPhone5S</span></li>
-        </ul>
+    <!-- S 内容 -->
+    <div class="content">
+        <!-- S topbar -->
+        <div id="J_Menu" class="topbar">
+            <div class="menu">
+                <ul>
+                    <textarea class="J_template">
+                        <li class="fittings menu-trigger" id="menu-trigger-acc" rel="menu-list-acc" data-acc="">
+                            <span>所有配件</span></li>
+                        <li class="device menu-trigger" id="menu-trigger-model" rel="menu-list-model" data-sku=""
+                            data-brand="" data-model=""><span>{{phone.style}}</span></li>
+                    </textarea>
+                </ul>
+            </div>
+
+            <!-- S menu-pop 配件/设备选择弹框 -->
+            <div class="menu-pop">
+                <i class="icon-arrow"></i>
+                <!-- 配件弹框 -->
+                <ul id="menu-list-acc" class="menu-list fittings-pop">
+                    <textarea class="J_template">
+
+                        {{#initAccessoresType}}
+                        <li><a href="details.html?" class="brandLink">{{thirdTypeName}}</a></li>
+                        {{/initAccessoresType}}
+
+                    </textarea>
+                </ul>
+                <!-- 设备弹框 -->
+                <ul id="menu-list-model" class="menu-list device-pop cur" data-sel-brand="" data-sel-model="">
+                    <textarea class="J_template">
+                        {{#initBrandName}}
+                        <li class="item-brand" data-brand="{{brandName}}" >
+                            <div class="hd item-brand-trigger" data-brand="{{brandName}}">
+                                <h4>{{brandName}}</h4>
+                                <span class="select-sub"></span>
+                            </div>
+                            <div class="sub-list">
+                            </div>
+                        </li>
+                        {{/initBrandName}}
+                    </textarea>
+
+                </ul>
+            </div>
+            <!-- E menu-pop 配件/设备选择弹框 -->
+        </div>
+        <!-- E topbar -->
+        <div id="J_AccGroup">
+            <textarea class="J_template">
+                {{> accGroup}}
+            </textarea>
+
+        </div>
+
+        <div id="J_DefaultList">
+            <div class="pd-list clearfix">
+                <div class="pd-list-cate">
+                    <ul class="clearfix">
+                        <textarea class="J_template">
+                            {{> defaultList}}
+                        </textarea>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+
     </div>
-
-    <!-- S menu-pop 配件/设备选择弹框 -->
-    <div class="menu-pop">
-        <i class="icon-arrow"></i>
-        <!-- 配件弹框 -->
-        <ul class="fittings-pop">
-            <li class="cur"><a href="home.html">所有配件</a></li>
-            <li><a href="details.html">手机壳</a></li>
-            <li><a href="details.html">充电宝</a></li>
-            <li><a href="details.html">挂饰</a></li>
-            <li><a href="details.html">储存卡</a></li>
-            <li><a href="details.html">电源线</a></li>
-        </ul>
-        <!-- 设备弹框 -->
-        <ul class="device-pop cur">
-            <li class="cur">
-                <div class="hd">
-                    <h4>三星</h4>
-                    <span class="select-sub">S3</span>
-                </div>
-                <div class="sub-list">
-                    <!-- <span>全部</span> -->
-                    <span>NOTE4</span>
-                    <span>NOTE2</span>
-                    <span class="cur">S3</span>
-                    <span>S4</span>
-                    <span>S5</span>
-                    <span>Mega</span>
-                </div>
-            </li>
-            <li>
-                <div class="hd">
-                    <h4>IPhone</h4>
-                    <span class="select-sub"></span>
-                </div>
-                <div class="sub-list">
-                    <!-- <span>全部</span> -->
-                    <span>IPhone6</span>
-                    <span>IPhone6 plus</span>
-                </div>
-            </li>
-            <li>
-                <div class="hd">
-                    <h4>中兴</h4>
-                    <span class="select-sub"></span>
-                </div>
-                <div class="sub-list">
-                    <!-- <span>全部</span> -->
-                    <span>IPhone6</span>
-                    <span>IPhone6 plus</span>
-                </div>
-            </li>
-            <li>
-                <div class="hd">
-                    <h4>华为</h4>
-                    <span class="select-sub"></span>
-                </div>
-                <div class="sub-list">
-                    <!-- <span>全部</span> -->
-                    <span>IPhone6</span>
-                    <span>IPhone6 plus</span>
-                </div>
-            </li>
-        </ul>
-    </div>
-    <!-- E menu-pop 配件/设备选择弹框 -->
-</div>
-<!-- E topbar -->
-<div id="J_AccGroup">
-<textarea class="J_template">
-    {{> accGroup}}
-</textarea>
-
-</div>
-
-
-</div>
-<!-- E 内容 -->
-<div class="overlay dN"></div>
-<!-- S device-anim -->
-<div class="deice-anim dN">
-    <div class="loader-con">
-        <span class="loader active"><i></i></span>
+    <!-- E 内容 -->
+    <div class="overlay dN"></div>
+    <!-- S device-anim -->
+    <div class="deice-anim dN">
+        <div class="loader-con">
+            <span class="loader active"><i></i></span>
       <span class="loader-txt">
         正在检测型号...
       </span>
+        </div>
     </div>
-</div>
-<!-- E device-anim -->
+    <!-- E device-anim -->
 </div>
 <!-- E 主内容 -->
 
 
-<div id="J_DefaultList">
-    <div class="pd-list clearfix">
-        <div class="pd-list-cate">
-            <ul class="clearfix">
-            <textarea class="J_template">
-                {{> defaultList}}
-            </textarea>
-            </ul>
-        </div>
-    </div>
-
-</div>
 <div id="search-cntr" class="search-cntr">
     <div id="J_Filter" class="">
 
     </div>
-    <header id="J_Menu">
-        <h2>筛选11</h2>
-        <ul id="brands">
-            <textarea class="J_template">
 
-                {{#initBrandName}}
-                <li><a href="javascript:;" class="brandLink">{{brandName}}</a></li>
-                {{/initBrandName}}
-
-            </textarea>
-
-
-        </ul>
-        <ul id="models">
-            <textarea class="J_template">
-
-                {{#styleByBrandName}}
-                <li><a href="javascript:;" class="brandLink">{{style}}</a></li>
-                {{/styleByBrandName}}
-
-            </textarea>
-        </ul>
-        <ul id="accessories">
-            <textarea class="J_template">
-
-                {{#initAccessoresType}}
-                <li><a href="javascript:;" class="brandLink">{{thirdTypeName}}</a></li>
-                {{/initAccessoresType}}
-
-            </textarea>
-        </ul>
-    </header>
 
     <div class="sorting">
         <h2>排序</h2>
@@ -181,15 +114,15 @@
             {{> goods}}
         </textarea>
     </ol>
+
+
     <div class="btm-bar">
         <a href="javascript:;" id="refresh">加载更多</a>
     </div>
 </div>
-<div id="default-list">
+<div id="default-list"></div>
 
-</div>
-
-
+<div id="J_view_message"></div>
 <script src="../../require.js"></script>
 <script src="http://h5.m.jd.com/active/common/ping.min.js"></script>
 <script src="../config.js?v=@@version"></script>

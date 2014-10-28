@@ -1,30 +1,52 @@
 define([
     'app/index/skuNumber',
     'app/index/defaultList',
-    'app/index/brandsList',
+    'app/index/toolBar',
     'app/index/accessoryGroup',
     'app/index/goodsList',
     'app/index/attrPanel',
     'util'
-], function (skuNumber,defaultList, brandsList,accessoryGroup, goodsList, attrPanel, util) {
+], function (skuNumber,defaultList, toolBar,accessoryGroup, goodsList, attrPanel, util) {
 
     var phoneData = {};
+    var SKU ;
+    var modelData = {}
+
+
+
+
 
     hasParamSku (getAccGroup);
 
     function getAccGroup(sku) {
         var data ={};
         data.sku = sku;
-        accessoryGroup.init(data);
+
+        accessoryGroup.init(data).done(function(res){
+
+            modelData.style = res.mainproduct.style;
+            modelData.brand = res.mainproduct.brand;
+            modelData.sku = res.mainproduct.sku;
+
+            toolBar.init(modelData).done(function(res){
+
+            });
+
+        });
+
+    }
+
+    function renderMenu (){
+
     }
 
     function hasParamSku (cb){
         if ($.url.getParam('sku')) {
 
             //http://localhost:3000/src/v1/html/index.html?sku=944597
-            var sku = $.url.getParam('sku');
+            SKU = $.url.getParam('sku');
             //通过sku拉取多配件数据  从这里进来就不需要检测效果
-            cb(sku);
+            cb(SKU);
 
         } else {
 
@@ -41,12 +63,16 @@ define([
                 skuNumber.init(phoneData).done(function(res){
 
                     if(res.skuId){
-                        var sku = res.skuId;
-                        cb(sku);
+                        SKU = res.skuId;
+                        cb(SKU);
                     }else{
 
-                        //todo 显示默认类目
-                        defaultList.init().fail(function (error) {
+                        //显示默认类目
+                        defaultList.init().done(function(res){
+                            toolBar.init().done(function(res){
+
+                            });
+                        }).fail(function (error) {
                             alert('在index中的报错');
                         });
 
@@ -64,29 +90,16 @@ define([
 
 
 
-    var modelData = {}
-    modelData.brandName = '苹果';
-    modelData._ = 1411965756291;
 
-    var sortingData = {};
-    sortingData.pageNo = 0;
-    sortingData.thirdTypeId = 3;
-    sortingData.sku = 1023433;
-    sortingData.brandId = '';
-    sortingData.column = 0;
-    sortingData.sp = 'asc';
-    sortingData.condition = '';
-    sortingData.priceCondition = '';
+
+
 
     routie({
         "": function () {
-
             document.title = '配件中心';
+            console.log();
 
 
-            brandsList.init(modelData);
-            goodsList.init(sortingData);
-            attrPanel.init();
             //初始化品牌列表
 
         }
