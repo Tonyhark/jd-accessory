@@ -45,7 +45,7 @@ define([
                 columeValue = $target.attr('data-column'),
                 data = that.reqData;
             that.fill = '';
-            console.log(data);
+
             $.extend(data,{
                 column: columeValue,
                 pageNo: 0  //页数归零

@@ -4,72 +4,98 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
     <title></title>
-
-    <link rel="stylesheet" href="../css/css.css"/>
+    <link rel="stylesheet" href="../css/style.css"/>
 </head>
-<body>
+<body class="index">
 <script type="text/javascript" src="../js/spin.min.js"></script>
-<div id="J_DefaultList">
+<!-- S 主内容 -->
+<div class="wrapper">
+    <!-- S 内容 -->
+    <div class="content">
+        <!-- S topbar -->
+        <div id="J_Menu" class="topbar">
+            <div class="menu">
+                <ul>
+                    <textarea class="J_template">
+                        <li class="fittings menu-trigger" id="menu-trigger-acc" rel="menu-list-acc" data-acc="">
+                            <span>所有配件</span></li>
+                        <li class="device menu-trigger" id="menu-trigger-model" rel="menu-list-model" data-sku=""
+                            data-brand="" data-model=""><span>{{phone.style}}</span></li>
+                    </textarea>
+                </ul>
+            </div>
 
-</div>
-<div id="search-cntr" class="search-cntr">
-    <div id="J_Filter" class="">
+            <!-- S menu-pop 配件/设备选择弹框 -->
+            <div class="menu-pop">
+                <i class="icon-arrow"></i>
+                <!-- 配件弹框 -->
+                <ul id="menu-list-acc" class="menu-list fittings-pop">
+                    <textarea class="J_template">
 
-    </div>
-    <header id="J_Menu">
-        <h2>筛选11</h2>
-        <ul id="brands">
+                        {{#initAccessoresType}}
+                        <li><a href="details.html?" class="brandLink">{{thirdTypeName}}</a></li>
+                        {{/initAccessoresType}}
+
+                    </textarea>
+                </ul>
+                <!-- 设备弹框 -->
+                <ul id="menu-list-model" class="menu-list device-pop cur" data-sel-brand="" data-sel-model="">
+                    <textarea class="J_template">
+                        {{#initBrandName}}
+                        <li class="item-brand" data-brand="{{brandName}}" data-sku="" >
+                            <div class="hd item-brand-trigger" data-brand="{{brandName}}">
+                                <h4>{{brandName}}</h4>
+                                <span class="select-sub"></span>
+                            </div>
+                            <div class="sub-list">
+                            </div>
+                        </li>
+                        {{/initBrandName}}
+                    </textarea>
+
+                </ul>
+            </div>
+            <!-- E menu-pop 配件/设备选择弹框 -->
+        </div>
+        <!-- E topbar -->
+        <div id="J_AccGroup">
             <textarea class="J_template">
-
-                {{#initBrandName}}
-                <li><a href="javascript:;" class="brandLink">{{brandName}}</a></li>
-                {{/initBrandName}}
-
+                {{> accGroup}}
             </textarea>
 
+        </div>
 
-        </ul>
-        <ul id="models">
-            <textarea class="J_template">
+        <div id="J_DefaultList">
+            <div class="pd-list clearfix">
+                <div class="pd-list-cate">
+                    <ul class="clearfix">
+                        <textarea class="J_template">
+                            {{> defaultList}}
+                        </textarea>
+                    </ul>
+                </div>
+            </div>
 
-                {{#styleByBrandName}}
-                <li><a href="javascript:;" class="brandLink">{{style}}</a></li>
-                {{/styleByBrandName}}
+        </div>
 
-            </textarea>
-        </ul>
-        <ul id="accessories">
-            <textarea class="J_template">
 
-                {{#initAccessoresType}}
-                <li><a href="javascript:;" class="brandLink">{{thirdTypeName}}</a></li>
-                {{/initAccessoresType}}
-
-            </textarea>
-        </ul>
-    </header>
-
-    <div class="sorting">
-        <h2>排序</h2>
-        <a href="javascript:;" class="sroting-btn sorting-current" data-column="0">销量</a>
-        <a href="javascript:;" class="sroting-btn" data-column="2">好评</a>
-        <a href="javascript:;" class="sroting-btn" data-column="1">价格</a>
-        <a href="javascript:;" class="sroting-btn" data-column="3">新品</a>
     </div>
-    <ol id="goods-list">
-        <textarea class="J_template">
-            {{> goods}}
-        </textarea>
-    </ol>
-    <div class="btm-bar">
-        <a href="javascript:;" id="refresh">加载更多</a>
+    <!-- E 内容 -->
+    <div class="overlay dN"></div>
+    <!-- S device-anim -->
+    <div class="deice-anim dN">
+        <div class="loader-con">
+            <span class="loader active"><i></i></span>
+      <span class="loader-txt">
+        正在检测型号...
+      </span>
+        </div>
     </div>
+    <!-- E device-anim -->
 </div>
-<div id="default-list">
+<!-- E 主内容 -->
 
-</div>
-
-
+<div id="J_view_message"></div>
 <script src="../../require.js"></script>
 <script src="http://h5.m.jd.com/active/common/ping.min.js"></script>
 <script src="../config.js?v=@@version"></script>

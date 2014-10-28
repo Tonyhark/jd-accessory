@@ -10,7 +10,9 @@ define(function() {
 		var re = {
 			//baseUrl: baseUrl,
 			mainDomain: mainDomain,
-			apiUrl: apiUrl
+			apiUrl: apiUrl,
+            transitApiUrl:'http://h5.m.jd.com'
+
 		};
 		for (var p in location) {
 			var v = location[p],
@@ -21,8 +23,9 @@ define(function() {
 		}
 		re.rule = {
 			pic:{
-				url:'http://img30.360buyimg.com/n3/'
-			}
+                url:'http://img30.360buyimg.com/n3/',
+                accLink: ''
+            }
 		};
 		return re;
 	}).call(self)
