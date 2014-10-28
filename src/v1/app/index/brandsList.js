@@ -14,7 +14,7 @@ define([
 ], function($, store, Model, View, cTpl, alertView) {
     return {
         init: function(data) {
-            dtd = $.util.Deferred();
+           var dtd = $.util.Deferred();
 
             var model = new Model(),
                 brandsListView = new View({
@@ -50,9 +50,6 @@ define([
                         });
 
                     })
-
-
-
                     return dtd.resolve(ret);
                 }
 //                else {
