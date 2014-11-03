@@ -95,7 +95,7 @@ body{overflow-x: hidden;}
 .menu-pop .device-pop li h4{display: inline-block; font-weight: normal;}
 .menu-pop .device-pop .select-sub{position: absolute; right: 45px; color: #e4393c;}
 .menu-pop .device-pop .sub-list{background-color: #F4F5F9; padding: 15px 15px 0; border-bottom: 1px solid #D6D6D6; display: none;}
-.menu-pop .device-pop .sub-list span{display: inline-block; height: 20px; line-height: 20px; border: 1px solid #D7D7D7; padding: 0 10px; background-color: #FFF; border-radius: 10px; margin: 0 6px 15px;}
+.menu-pop .device-pop .sub-list a{display: inline-block; height: 20px; line-height: 20px; border: 1px solid #D7D7D7; padding: 0 10px; background-color: #FFF; border-radius: 10px; margin: 0 6px 15px;}
 .menu-pop .device-pop .cur .hd:after{-webkit-transform: rotate(135deg); top: 18px; border-color: #E33942;}
 .menu-pop .device-pop .cur .hd h4{color: #e4393c;}
 .menu-pop .device-pop .cur .sub-list{display: block;}

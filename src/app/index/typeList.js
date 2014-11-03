@@ -31,7 +31,6 @@ define([
 
                 if (typeof ret == 'object') {
 
-
                     typeListView.render(ret);
 
                     return dtd.resolve(ret);

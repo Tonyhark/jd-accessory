@@ -39,7 +39,7 @@ define([
                         resultObj.accessoryList.push(v);
                     }
                 });
-
+                console.log(resultObj);
                 return resultObj;
             };
 
@@ -48,11 +48,9 @@ define([
 
                     if (typeof res == 'object') {
 
-                        var phoneStyle = res.mainproduct.style
                         var accData = mapObj(res);
-
                         accGrouptView.render(accData);
-                        console.log(accData)
+
                         return dtd.resolve(res);
                     } else {
 
@@ -74,8 +72,9 @@ define([
             renderAccGroup(data);
 
 
-            //todo 点击tag事件
-            $(document).on('click','.tag-model',function(){
+            // 点击tag事件
+            $(document).on('click','.tag-model',function(e){
+                e.preventDefault();
                 var $tar = $(this),
                     $li = $tar.parents('.item-brand'),
                     selLabel = $li.find('.select-sub'),

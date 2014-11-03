@@ -32,12 +32,12 @@ define([
 
             if(modelData != undefined){
                 menuListData.phone = modelData;
-                menuListData.showAccList = true;
+                menuListData.showAccMenu = true;
             }else{
                 menuListData.phone = {
                     style: "选择手机"
                 };
-                menuListData.showAccList = false;
+                menuListData.showAccMenu = false;
             }
 
             var reqData = {}

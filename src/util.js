@@ -1,14 +1,11 @@
-define([
-	'common',
-	'config/url'
-], function($, urlConfig) {
+define(function() {
 	function formatNum(Source, Length) {
 		var strTemp = "";
 		for (i = 1; i <= Length - Source.length; i++) {
 			strTemp += "0";
 		}
 		return strTemp + Source;
-	}　　　　
+	}
 
 	return {
 		formatTime: function(time) {
@@ -20,7 +17,6 @@ define([
 			return (parseInt(price, 10) / 100).toFixed(2)
 		},
 		// ,
-
 		// getImage46: function(url){
 		// 	return url.replace(/\/\d{1,3}/,'/46');
 		// },
@@ -34,12 +30,12 @@ define([
 		// 	return url.replace(/\/\d{1,3}/,'/132');
 		// }
 
-		stringToHex: function(str) {　　　　
-			var res = [];　　　　
-			for (var i = 0; i < str.length; i++) {　　　　　
+		stringToHex: function(str) {
+			var res = [];
+			for (var i = 0; i < str.length; i++) {
 				res.push(formatNum(str.charCodeAt(i).toString(16), 4));
 			}
-			return res.join('');　　
+			return res.join('');
 		},
 		processNum: function(num) {
 			num = parseInt(num);

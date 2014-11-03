@@ -56,7 +56,8 @@ define([
                     this.model.typeList(reqData).done(function(res){
 
                         $.each(res.styleByBrandName, function(i,v){
-                            $('<span/>').html(v.style).attr({
+                            $('<a/>').html(v.style).attr({
+                                'href': 'index.html?sku='+ v.sku,
                                 'data-sku': v.sku,
                                 'class': 'tag-model'
                             }).appendTo($temp);
@@ -83,8 +84,8 @@ define([
             }
         },
         afterRender: function(data){
-            console.log(data);
-            if(data.showAccList){
+            //判断是否需要显示配件菜单
+            if(data.showAccMenu){
                 $('.menu .fittings').show();
             }
             if(data.phone.brand&&data.phone.sku){

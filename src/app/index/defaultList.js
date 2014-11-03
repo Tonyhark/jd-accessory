@@ -41,7 +41,6 @@ define([
                     });
                 }
 
-
                 return dtd.resolve(res);
             }).fail(function(error){
                 alert('网络不稳定，休息一下，稍后试试~');
