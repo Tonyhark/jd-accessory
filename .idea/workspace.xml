@@ -5,9 +5,7 @@
     <bookmark url="file://$PROJECT_DIR$/src/view/index/toolBar.js" description="('item-selected')," line="45" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="93d2c3ab-2d8b-4d9c-9f69-df2b6257a628" name="Default" comment="toolbar view修改 为了实现选择配件跳转">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/html/detail.html" afterPath="$PROJECT_DIR$/src/html/detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/html/index.html" afterPath="$PROJECT_DIR$/src/html/index.html" />
+    <list default="true" id="93d2c3ab-2d8b-4d9c-9f69-df2b6257a628" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="test.iws" />
@@ -687,7 +685,11 @@
       <created>1415121763271</created>
       <updated>1415121763271</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="toolbar html 修改">
+      <created>1415122432126</created>
+      <updated>1415122432126</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -781,7 +783,8 @@
     <MESSAGE value="改写了 初始化型号tag选中效果的逻辑，每次打开手机型号二级选项（tag）后从li拿取 sku 从而找到对应的tag进行操作。&#10;li.item-selected 仅作为控制 li中已选型号的显隐状态&#10;" />
     <MESSAGE value="完成检测受手机的动画效果。修改了文件结构" />
     <MESSAGE value="toolbar view修改 为了实现选择配件跳转" />
-    <option name="LAST_COMMIT_MESSAGE" value="toolbar view修改 为了实现选择配件跳转" />
+    <MESSAGE value="toolbar html 修改" />
+    <option name="LAST_COMMIT_MESSAGE" value="toolbar html 修改" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
