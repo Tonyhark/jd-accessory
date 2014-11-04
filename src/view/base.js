@@ -130,9 +130,9 @@ define([
 					}
 
 					if (this.fill && this.fill == 'after') { //加到后面 需要考虑会有动态修改 before after replace 的情况
-						template.parent().prepend(renderHtml);
-					} else if (this.fill && this.fill == 'before') { //加到前面
 						template.parent().append(renderHtml);
+					} else if (this.fill && this.fill == 'before') { //加到前面
+						template.parent().prepend(renderHtml);
 					} else {
 						template.siblings().remove();
                         template.before(renderHtml);

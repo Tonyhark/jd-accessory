@@ -38,7 +38,9 @@ define([
 
                 if (typeof ret == 'object') {
 
-                    goodsListView.render(ret.resultQuery,'#goods-list');
+                    goodsListView
+                        .render(ret.resultQuery,'#goods-list')
+                        .setElement(document);
 
                     // 判断更多
                     if(!data.pageNo < ret.resultQuery.allPageNo){

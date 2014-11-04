@@ -35,7 +35,7 @@ define([
                 } else {
 
                     var alert = new alertView();
-                    alert.render({
+                                        alert.render({
                         'msg': ret.msg
                     });
 

@@ -10,6 +10,8 @@ define([
 
 ], function($,util,toolBar, goodsList,attrPanel) {
 
+    //http://localhost:3000/src/html/detail.html?sku=944597&thirdTypeId=3
+
     var attrData = {},
      modelData = {},
         sku = $.url.getParam('sku'),

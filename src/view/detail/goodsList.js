@@ -8,10 +8,13 @@ define([
 ], function ($, BaseView) {
     var View = $.util.inherit(BaseView);
     $.extend(View.prototype, {
+        initialize: function(config){
+            window
+        },
         events: {
             'click .goods-item': 'handler',
-            'click #refresh': 'refreshHandler',
-            'click .sroting-btn': 'sortHandler'
+            'click #refresh': 'handleLoadMore',
+            'click .sroting-btn': 'handleSort'
         },
         handler: function (e) {
             console.log($(e.currentTarget).attr('class'));
@@ -39,7 +42,7 @@ define([
 
             return this;
         },
-        sortHandler: function (e) {
+        handleSort: function (e) {
             var $target = $(e.currentTarget),
                 that = this,
                 columeValue = $target.attr('data-column'),

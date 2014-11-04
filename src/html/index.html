@@ -19,7 +19,7 @@
                     <textarea class="J_template">
                         <li class="fittings menu-trigger" id="menu-trigger-acc" rel="menu-list-acc" data-acc="">
                             <span>所有配件</span></li>
-                        <li class="device menu-trigger" id="menu-trigger-model" rel="menu-list-model" data-sku=""
+                        <li class="device menu-trigger" id="menu-trigger-model" rel="menu-list-model" data-sku="{{phone.sku}}"
                             data-brand="" data-model=""><span>{{phone.style}}</span></li>
                     </textarea>
                 </ul>
@@ -30,9 +30,10 @@
                 <i class="icon-arrow"></i>
                 <!-- 配件弹框 -->
                 <ul id="menu-list-acc" class="menu-list fittings-pop">
+                    <li><a class="menu-item-acc menu-item-acc-all" href="index.html?sku=764901" data-acc-id="">所有配件</a></li>
                     <textarea class="J_template">
                         {{#initAccessoresType}}
-                        <li><a href="details.html?" class="brandLink">{{thirdTypeName}}</a></li>
+                        <li><a class="menu-item-acc" href="detail.html?thirdTypeId={{thirdTypeId}}" class="brandLink" data-acc-id="{{thirdTypeId}}">{{thirdTypeName}}</a></li>
                         {{/initAccessoresType}}
                     </textarea>
                 </ul>

@@ -19,7 +19,8 @@ define([
             var model = new Model(),
                 toolBarView = new View({
                     model: model,
-                    el: '#J_Menu'
+                    el: '#J_Menu',
+                    fill: 'after'
 //                    ,
 //                    tpl: {
 //                        comment: cTpl
