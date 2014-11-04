@@ -20,7 +20,7 @@ define([
     function accGroupOrDefault (){
         if (paramSku) {
 
-            //http://localhost:3000/src/v1/html/index.html?sku=944597
+            //http://localhost:3000/src/html/index.html?sku=944597
             SKU = paramSku;
             //通过sku拉取多配件数据  从这里进来就不需要检测效果
             initAccGroup(SKU);

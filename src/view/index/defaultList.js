@@ -11,15 +11,9 @@ define([
         events: {
 
         },
-
         afterRender: function (data) {
-
             return this;
         }
-
-
-
-
     });
 
     return View;

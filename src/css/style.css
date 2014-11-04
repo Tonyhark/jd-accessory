@@ -55,8 +55,8 @@ body{overflow-x: hidden;}
 .topbar .sortable li:first-child{border: none; margin-left: -3px;}
 .topbar .sortable li .line{display: block; position: absolute; left: 0; bottom: -13px; width: 100%; display: none;}
 .topbar .sortable li .line:after{content: ''; display: block; margin: 0 10px; border-bottom: 2px solid #E33942;}
-.topbar .sortable .cur{color: #e4393c;}
-.topbar .sortable .cur .line{display: block;}
+.topbar .sortable .sorting-current{color: #e4393c;}
+.topbar .sortable .sorting-current .line{display: block;}
 
 /*pd-list*/
 .pd-list-con{background-color: #F4F5F9;}

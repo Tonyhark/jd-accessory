@@ -27,8 +27,6 @@ define([
             var orderid = $.url.getParam('orderid');
 
             model.brandsList(data).done(function(ret) {
-
-
                 if (typeof ret == 'object') {
 
                     typeListView.render(ret);

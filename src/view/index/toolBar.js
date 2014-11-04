@@ -65,7 +65,6 @@ define([
                         if(selectedSku){
                             $temp.find('[data-sku="'+ selectedSku +'"]').addClass('cur');
                         }
-
                         $subListWrap.html($temp.html());
                         $li.addClass(openedLiClass);
                     });
@@ -88,11 +87,17 @@ define([
             if(data.showAccMenu){
                 $('.menu .fittings').show();
             }
-            if(data.phone.brand&&data.phone.sku){
-                var brandName = data.phone.brand,
-                    sku = data.phone.sku;
-                this.$('li[data-brand="'+ brandName +'"]').attr('data-sku',sku);
 
+            if(data.phone.brand&&data.phone.sku){
+
+                //初始化品牌列表项
+                var brandName = data.phone.brand,
+                    sku = data.phone.sku,
+                    style = data.phone.style;
+                this.$('li[data-brand="'+ brandName +'"]')
+                    .attr('data-sku',sku)
+                    .addClass('item-selected')
+                    .find('.select-sub').text(style);
             }
         }
     });

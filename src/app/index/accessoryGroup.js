@@ -71,7 +71,6 @@ define([
 
             renderAccGroup(data);
 
-
             // 点击tag事件
             $(document).on('click','.tag-model',function(e){
                 e.preventDefault();

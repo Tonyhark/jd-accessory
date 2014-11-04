@@ -13,9 +13,6 @@ define([
         handler: function(e){
             alert('click .brandLink');
         }
-
-
     });
-
     return View;
 });

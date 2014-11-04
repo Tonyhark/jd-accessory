@@ -2,38 +2,50 @@
  * Created by Administrator on 2014/10/21.
  */
 define([
-    'app/index/brandsList',
-    'app/index/goodsList',
-    'app/index/attrPane',
-    'util'
-], function(brandsList, goodsList,util) {
-    var info = {};
+    'common',
+    'util',
+    'app/index/toolBar',
+    'app/detail/goodsList',
+    'app/detail/attrPanel'
 
+], function($,util,toolBar, goodsList,attrPanel) {
 
-    var modelData = {};
+    var attrData = {},
+     modelData = {},
+        sku = $.url.getParam('sku'),
+        thirdTypeId =  $.url.getParam('thirdTypeId');
+    attrData.sku = sku;
+    attrData.thirdTypeId = thirdTypeId;
+
     modelData.brandName='苹果';
-    //modelData.callBack='jsonp1411965756126';
     modelData._=1411965756291;
 
     var sortingData ={};
     sortingData.pageNo = 0;
-    sortingData.thirdTypeId=3;
-    sortingData.sku=1023433;
+    sortingData.thirdTypeId= thirdTypeId;
+    sortingData.sku= sku;
     sortingData.brandId='';
     sortingData.column=0;
     sortingData.sp='asc';
     sortingData.condition='';
     sortingData.priceCondition='';
-    var init = {};
+
+
     routie({
         "": function() {
 
             document.title = '配件中心';
-            brandsList.init(modelData);
-            goodsList.init(sortingData);
+//            var modelData ={};
+//            modelData.style = res.mainproduct.style;
+//            modelData.brand = res.mainproduct.brand;
+//            modelData.sku = res.mainproduct.sku;
+
+            toolBar.init();
+            attrPanel.init(attrData);
+            goodsList.init(sortingData).done(function(res){
+
+            });
             //初始化品牌列表
         }
-
     })
-
 });

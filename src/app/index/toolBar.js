@@ -9,7 +9,7 @@ define([
     'common/store',
     'model/accessorie',
     'view/index/toolBar',
-    //'text!tpl/index/comment.mustache',
+    //'text!tpl/',
     'view/widget/alert'
 ], function ($, store, Model, View, alertView) { // cTpl,
     return {
@@ -45,7 +45,6 @@ define([
 
             model.brandsList(reqData).done(function (ret) {
 
-
                 if (typeof ret == 'object') {
 
                     menuListData.initBrandName = ret.initBrandName;
@@ -55,13 +54,8 @@ define([
                         menuListData.initAccessoresType = ret.initAccessoresType;
                         console.log(menuListData);
                         toolBarView.render(menuListData);
-
                     });
 
-
-//                    model.typeList(data).done(function (ret) {
-//                        menuListData.styleByBrandName = ret.styleByBrandName
-//                    })
                     return dtd.resolve(ret);
                 }
                 else {

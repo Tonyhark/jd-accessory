@@ -11,13 +11,13 @@ define([
     'common',
     'common/store',
     'model/accessorie',
-    'view/index/goodsList',
-    'text!tpl/index/goods.mustache',
+    'view/detail/goodsList',
+    'text!tpl/detail/goods.mustache',
     'view/widget/alert'
 ], function($, store, Model, View, cTpl, alertView) {
     return {
         init: function(data) {
-            dtd = $.util.Deferred();
+            var dtd = $.util.Deferred();
 
             var model = new Model(),
                 goodsListView = new View({
@@ -36,10 +36,9 @@ define([
 
             model.goodsList(data).done(function(ret) {
 
-
                 if (typeof ret == 'object') {
 
-                    goodsListView.render(ret.resultQuery);
+                    goodsListView.render(ret.resultQuery,'#goods-list');
 
                     // 判断更多
                     if(!data.pageNo < ret.resultQuery.allPageNo){

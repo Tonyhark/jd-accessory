@@ -1,9 +1,8 @@
 {
-  "name": "test",
+  "name": "accessory",
   "version": "1.0.0",
-  "dir": "v1",
   "description": "",
-  "min_file": "test.min.js",
+  "min_file": "accessory.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
