@@ -5,16 +5,9 @@
     <bookmark url="file://$PROJECT_DIR$/src/view/index/toolBar.js" description="('item-selected')," line="45" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="93d2c3ab-2d8b-4d9c-9f69-df2b6257a628" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/index/accessoryGroup.js" afterPath="$PROJECT_DIR$/src/app/index/accessoryGroup.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/base.js" afterPath="$PROJECT_DIR$/src/view/base.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/detail.js" afterPath="$PROJECT_DIR$/src/app/detail.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/detail/goodsList.js" afterPath="$PROJECT_DIR$/src/app/detail/goodsList.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/detail/goodsList.js" afterPath="$PROJECT_DIR$/src/view/detail/goodsList.js" />
+    <list default="true" id="93d2c3ab-2d8b-4d9c-9f69-df2b6257a628" name="Default" comment="toolbar view修改 为了实现选择配件跳转">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/html/detail.html" afterPath="$PROJECT_DIR$/src/html/detail.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/html/index.html" afterPath="$PROJECT_DIR$/src/html/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/index/toolBar.js" afterPath="$PROJECT_DIR$/src/app/index/toolBar.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/index/toolBar.js" afterPath="$PROJECT_DIR$/src/view/index/toolBar.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app/index/typeList.js" afterPath="$PROJECT_DIR$/src/app/index/typeList.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="test.iws" />
@@ -32,42 +25,12 @@
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="alert.js" pinned="false" current="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/view/widget/alert.js">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="765">
-                    <caret line="18" column="12" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="index.js" pinned="false" current="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/src/app/index.js">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.6570997" vertical-offset="180" max-vertical-offset="1500">
-                    <caret line="41" column="61" selection-start-line="41" selection-start-column="61" selection-end-line="41" selection-end-column="61" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="test" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.60642785">
+    <splitter split-orientation="horizontal" split-proportion="0.44783983">
       <split-first>
         <splitter split-orientation="horizontal" split-proportion="0.50304085">
           <split-first>
@@ -92,11 +55,11 @@
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="toolBar.js" pinned="false" current="true" current-in-tab="true">
+              <file leaf-file-name="toolBar.js" pinned="false" current="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/src/view/index/toolBar.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state vertical-scroll-proportion="0.34085512" vertical-offset="673" max-vertical-offset="1830">
-                      <caret line="60" column="21" selection-start-line="60" selection-start-column="21" selection-end-line="60" selection-end-column="21" />
+                    <state vertical-scroll-proportion="0.90097797" vertical-offset="838" max-vertical-offset="2355">
+                      <caret line="74" column="37" selection-start-line="74" selection-start-column="37" selection-end-line="74" selection-end-column="37" />
                       <folding />
                     </state>
                   </provider>
@@ -171,8 +134,8 @@
               <file leaf-file-name="backurl.js" pinned="false" current="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/src/view/widget/backurl.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state vertical-scroll-proportion="0.48220438" vertical-offset="0" max-vertical-offset="871">
-                      <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+                    <state vertical-scroll-proportion="0.49586776" vertical-offset="0" max-vertical-offset="847">
+                      <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
                       <folding />
                     </state>
                   </provider>
@@ -224,12 +187,14 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="detail.html" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="detail.html" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/html/detail.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.3719862" vertical-offset="2016" max-vertical-offset="2910">
-                  <caret line="143" column="18" selection-start-line="143" selection-start-column="18" selection-end-line="143" selection-end-column="18" />
-                  <folding />
+                <state vertical-scroll-proportion="0.510907" vertical-offset="155" max-vertical-offset="2520">
+                  <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+                  <folding>
+                    <element signature="tag#ul#1;tag#div#1;tag#div#0;tag#div#0;tag#div#0;tag#body#0;tag#html#0" expanded="false" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -247,8 +212,8 @@
           <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/html/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-5.3773584" vertical-offset="270" max-vertical-offset="1755">
-                  <caret line="37" column="31" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
+                <state vertical-scroll-proportion="-6.5660377" vertical-offset="162" max-vertical-offset="1680">
+                  <caret line="34" column="87" selection-start-line="34" selection-start-column="87" selection-end-line="34" selection-end-column="87" />
                   <folding />
                 </state>
               </provider>
@@ -308,7 +273,6 @@
         <option value="$PROJECT_DIR$/src/model/accessorie.js" />
         <option value="$PROJECT_DIR$/src/view/index/defaultList.js" />
         <option value="$PROJECT_DIR$/src/app/detail/attrPanel.js" />
-        <option value="$PROJECT_DIR$/src/html/detail.html" />
         <option value="$PROJECT_DIR$/src/view/detail/attrPanel.js" />
         <option value="$PROJECT_DIR$/src/app/detail.js" />
         <option value="$PROJECT_DIR$/src/app/index/typeList.js" />
@@ -316,10 +280,11 @@
         <option value="$PROJECT_DIR$/src/view/detail/goodsList.js" />
         <option value="$PROJECT_DIR$/src/app/index/toolBar.js" />
         <option value="$PROJECT_DIR$/src/view/base.js" />
-        <option value="$PROJECT_DIR$/src/html/index.html" />
         <option value="$PROJECT_DIR$/src/app/index/accessoryGroup.js" />
         <option value="$PROJECT_DIR$/src/view/widget/backurl.js" />
         <option value="$PROJECT_DIR$/src/view/index/toolBar.js" />
+        <option value="$PROJECT_DIR$/src/html/index.html" />
+        <option value="$PROJECT_DIR$/src/html/detail.html" />
       </list>
     </option>
   </component>
@@ -718,7 +683,11 @@
       <created>1415015747197</created>
       <updated>1415015747197</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="toolbar view修改 为了实现选择配件跳转">
+      <created>1415121763271</created>
+      <updated>1415121763271</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -746,22 +715,22 @@
     <editor active="false" />
     <layout>
       <window_info id="Grunt" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900432" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32864866" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2012987" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900432" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973656" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.115911484" sideWeight="0.4992764" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.115911484" sideWeight="0.4992764" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973656" sideWeight="0.5007236" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20972973" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900432" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3261339" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.115800865" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26486486" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -776,7 +745,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973656" sideWeight="0.5007236" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20972973" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3261339" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.115800865" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Grunt" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900432" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900432" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -811,7 +780,8 @@
     <MESSAGE value="完成2个3级类目的渲染，完成入口逻辑开发(请求sku等，这个接口不稳定)，完成5个配件类别的html渲染" />
     <MESSAGE value="改写了 初始化型号tag选中效果的逻辑，每次打开手机型号二级选项（tag）后从li拿取 sku 从而找到对应的tag进行操作。&#10;li.item-selected 仅作为控制 li中已选型号的显隐状态&#10;" />
     <MESSAGE value="完成检测受手机的动画效果。修改了文件结构" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成检测受手机的动画效果。修改了文件结构" />
+    <MESSAGE value="toolbar view修改 为了实现选择配件跳转" />
+    <option name="LAST_COMMIT_MESSAGE" value="toolbar view修改 为了实现选择配件跳转" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1097,26 +1067,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6570997" vertical-offset="180" max-vertical-offset="1500">
-          <caret line="41" column="61" selection-start-line="41" selection-start-column="61" selection-end-line="41" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/accessorie.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-19.724138" vertical-offset="118" max-vertical-offset="1590">
           <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/detail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="870">
-          <caret line="32" column="32" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
           <folding />
         </state>
       </provider>
@@ -1161,14 +1115,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/html/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.3773584" vertical-offset="270" max-vertical-offset="1755">
-          <caret line="37" column="31" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/detail/goodsList.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="1425">
@@ -1177,27 +1123,53 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/index/toolBar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.90097797" vertical-offset="838" max-vertical-offset="2355">
+          <caret line="74" column="37" selection-start-line="74" selection-start-column="37" selection-end-line="74" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/detail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="870">
+          <caret line="32" column="32" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6570997" vertical-offset="180" max-vertical-offset="1500">
+          <caret line="41" column="61" selection-start-line="41" selection-start-column="61" selection-end-line="41" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/widget/backurl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48220438" vertical-offset="0" max-vertical-offset="871">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.49586776" vertical-offset="0" max-vertical-offset="847">
+          <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/html/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.5660377" vertical-offset="162" max-vertical-offset="1680">
+          <caret line="34" column="87" selection-start-line="34" selection-start-column="87" selection-end-line="34" selection-end-column="87" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/html/detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3719862" vertical-offset="1926" max-vertical-offset="2805">
-          <caret line="143" column="18" selection-start-line="143" selection-start-column="18" selection-end-line="143" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/index/toolBar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34085512" vertical-offset="673" max-vertical-offset="1830">
-          <caret line="60" column="21" selection-start-line="60" selection-start-column="21" selection-end-line="60" selection-end-column="21" />
-          <folding />
+        <state vertical-scroll-proportion="0.510907" vertical-offset="155" max-vertical-offset="2520">
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding>
+            <element signature="tag#ul#1;tag#div#1;tag#div#0;tag#div#0;tag#div#0;tag#body#0;tag#html#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
