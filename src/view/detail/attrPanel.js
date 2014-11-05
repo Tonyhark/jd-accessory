@@ -12,15 +12,12 @@ define([
 
             $(document).on('click','#J_AttrTrigger', $.util.bind(this.triggerAttr, this));
             $(document).on('click', '.overlay',$.util.bind(this.closeAttr, this));
+            $('#J_AttrPane').bind('close', $.util.bind(this.closeAttr,this))
 
         },
         events: {
-            'evt  #J_AttrBtn': 'handleOk',
             'click .attr-first-li': 'showAttrSecond',
             'click .attr-sec-li': 'selectOption'
-        },
-        handleOk: function(e){
-            alert('click .brandLink');
         },
 
         triggerAttr: function(e){

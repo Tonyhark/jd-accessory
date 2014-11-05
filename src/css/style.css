@@ -86,7 +86,7 @@ body{overflow-x: hidden;}
 .menu-pop .fittings-pop{padding-top: 8px; padding-bottom: 15px;}
 .menu-pop .fittings-pop li{line-height: 33px; height: 33px;}
 .menu-pop .fittings-pop a{display: block; padding: 0 15px;}
-.menu-pop .fittings-pop .cur a{color: #e4393c;}
+.menu-pop .fittings-pop .cur {color: #e4393c;}
 
 .menu-pop .device-pop{}
 .menu-pop .device-pop li{}
@@ -215,3 +215,10 @@ body{overflow-x: hidden;}
 .select-sub{display: none;}
 .item-selected .select-sub{
     display: inline;}
+#J_Menu{
+    display: none;-webkit-user-select: none; -webkit-text-size-adjust :none;}
+.pd-item .pd-icon{
+    display: none;}
+.show-icon .pd-icon{
+    display: block;}
+body{-webkit-user-select: none; -webkit-text-size-adjust :none;}

@@ -32,6 +32,8 @@ define([
 //                    renderType: 'normal'
                 });
 
+            goodsListView.reqData = data;
+
             var orderid = $.url.getParam('orderid');
 
             model.goodsList(data).done(function(ret) {
@@ -39,8 +41,7 @@ define([
                 if (typeof ret == 'object') {
 
                     goodsListView
-                        .render(ret.resultQuery,'#goods-list')
-                        .setElement(document);
+                        .render(ret.resultQuery,'#goods-list');
 
                     // 判断更多
                     if(!data.pageNo < ret.resultQuery.allPageNo){

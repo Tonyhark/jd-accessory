@@ -1,0 +1,37 @@
+<div class="filter-main">
+    <div class="hd">
+        <span class="title">筛选</span>
+        <a id="J_AttrBtn" href="javascript:;" class="btn-opt">确定</a>
+    </div>
+    <div class="filter-list">
+        <ul class="attr-first">
+                {{#propList}}
+                    <li class="attr-first-li" data-attr-id="{{property.propertyId}}" data-option-name="" data-option-id="">
+
+                        <h4>{{property.propertyName}}</h4>
+                        <span class="select-sub">全部</span>
+                    </li>
+                {{/propList}}
+        </ul>
+    </div>
+</div>
+<div class="filter-sub">
+    <div class="hd">
+        <span class="title">筛选</span>
+        <!--<a href="javascript:;" class="btn-opt">确定</a>-->
+    </div>
+    <div class="filter-list attr-second-wrap">
+
+            {{#propList}}
+                <ul class="attr-second" data-attr-id="{{property.propertyId}}" data-type="single">
+                    <li class="attr-sec-li cur" data-option-id=""><h4>全部</h4></li>
+                    {{#values}}
+                        <li class="attr-sec-li" data-option-id="{{valueId}}">
+                            <h4>{{valueName}}</h4>
+                        </li>
+                    {{/values}}
+                </ul>
+            {{/propList}}
+
+    </div>
+</div>

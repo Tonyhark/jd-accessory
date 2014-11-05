@@ -8,43 +8,49 @@ define([
     'app/detail/goodsList',
     'app/detail/attrPanel'
 
-], function($,util,toolBar, goodsList,attrPanel) {
+], function ($, util, toolBar, goodsList, attrPanel) {
 
     //http://localhost:3000/src/html/detail.html?sku=944597&thirdTypeId=3
 
     var attrData = {},
-     modelData = {},
+        modelData = {},
         sku = $.url.getParam('sku'),
-        thirdTypeId =  $.url.getParam('thirdTypeId');
+        thirdTypeId = $.url.getParam('thirdTypeId');
     attrData.sku = sku;
     attrData.thirdTypeId = thirdTypeId;
 
-    modelData.brandName='苹果';
-    modelData._=1411965756291;
+    modelData.brandName = '苹果';
+    modelData._ = 1411965756291;
 
-    var sortingData ={};
-    sortingData.pageNo = 0;
-    sortingData.thirdTypeId= thirdTypeId;
-    sortingData.sku= sku;
-    sortingData.brandId='';
-    sortingData.column=0;
-    sortingData.sp='asc';
-    sortingData.condition='';
-    sortingData.priceCondition='';
+    var goodsData = {};
+    goodsData.pageNo = 0;
+    goodsData.thirdTypeId = thirdTypeId;
+    goodsData.sku = sku;
+    goodsData.brandId = '';
+    goodsData.column = 0;
+    goodsData.sp = 'asc';
+    goodsData.condition = '';
+    goodsData.priceCondition = '';
 
 
     routie({
-        "": function() {
+        "": function () {
 
             document.title = '配件中心';
-//            var modelData ={};
-//            modelData.style = res.mainproduct.style;
-//            modelData.brand = res.mainproduct.brand;
-//            modelData.sku = res.mainproduct.sku;
+            var modelData = {},accData={};
 
-            toolBar.init();
-            attrPanel.init(attrData);
-            goodsList.init(sortingData).done(function(res){
+
+            attrPanel.init(attrData).done(function (res) {
+                modelData.style = res.productMap.style;
+                modelData.brand = res.productMap.brand;
+                modelData.sku = res.productMap.sku;
+
+                accData.accId = res.thirdTypeId;
+                accData.accName = res.thirdTypeName;
+                toolBar.init(modelData,accData);
+
+            });
+            goodsList.init(goodsData).done(function (res) {
 
             });
             //初始化品牌列表

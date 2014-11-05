@@ -9,9 +9,7 @@ define([
     $.extend(View.prototype, {
         events: {
             'click .menu-trigger': 'handleMenu',
-            'click .item-brand-trigger': 'getModelList',
-            'click .tag-model': 'handleClickTag',
-            'click .menu-item-acc': 'handleSelectAcc'
+            'click .item-brand-trigger': 'getModelList'
         },
         handleMenu: function(e){
             var $tar = $(e.currentTarget),
@@ -72,9 +70,7 @@ define([
                     });
             }
         },
-        handleSelectAcc: function(e){
-            //todo 绑定配件点击事件 需要获取 accId Skuid
-        },
+
         afterRender: function(data){
             //判断是否需要显示配件菜单
             if(data.showAccMenu){
@@ -88,21 +84,19 @@ define([
                     style = data.phone.style;
 
                 //初始化品牌列表项
-
                 this.$('li[data-brand="'+ brandName +'"]')
                     .attr('data-sku',sku)
                     .addClass('item-selected')
                     .find('.select-sub').text(style);
 
-                //todo 详细中需要设置配件选中id
+                //详细页中需要设置配件选中id和名称
                 if(data.acc){
-                    //$('#menu-trigger-acc');
-
+                    $('#menu-trigger-acc').attr('data-acc',data.acc.accId).find('span').text(data.acc.accName);
+                    $('#menu-list-acc').find('[data-acc-id="'+ data.acc.accId +'"]').addClass('cur');
                 }
-
-
-
             }
+
+            $('#J_Menu').show();
         }
 
     });

@@ -75,12 +75,14 @@ define([
             modelData.sku = res.mainproduct.sku;
 
             toolBar.init(modelData).done(function(res){
-
+                  
             });
-
         });
 
     }
+
+
+
     routie({
         "": function () {
             document.title = '配件中心';

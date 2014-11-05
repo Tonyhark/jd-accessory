@@ -13,7 +13,7 @@ define([
     'view/widget/alert'
 ], function ($, store, Model, View, alertView) { // cTpl,
     return {
-        init: function (modelData) {
+        init: function (modelData,accData) {
             var dtd = $.util.Deferred();
 
             var model = new Model(),
@@ -39,6 +39,10 @@ define([
                     style: "选择手机"
                 };
                 menuListData.showAccMenu = false;
+            }
+
+            if(accData != undefined){
+                menuListData.acc = accData;
             }
 
             var reqData = {}

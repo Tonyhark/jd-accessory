@@ -1,6 +1,6 @@
 {{#list}}
     <li>
-        <a href="#" class="pd-item">
+        <a href="javascript:;" class="pd-item">
             <div class="pd-pic">
                 <i class="pd-icon icon-praise"></i>
                 <img src="http://img30.360buyimg.com/n3/{{imageUrl}}" width="100%" alt="">
@@ -10,10 +10,14 @@
                 <span class="pd-price-num"><em class="price-unit">¥</em>{{price}}</span>
             </div>
             <div class="feedback">
-                <span class="percent">好评98%</span>
-                <span class="num">{{comments}}人</span>
+
+                <span class="num">{{comments}} 好评</span>
             </div>
         </a>
     </li>
 {{/list}}
-
+{{^list}}
+    <div>
+        <strong>No Data :(</strong>
+    </div>
+{{/list}}
