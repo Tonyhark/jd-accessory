@@ -23,7 +23,7 @@ define([
     modelData._ = 1411965756291;
 
     var goodsData = {};
-    goodsData.pageNo = 0;
+    goodsData.pageNo = 1;
     goodsData.thirdTypeId = thirdTypeId;
     goodsData.sku = sku;
     goodsData.brandId = '';
