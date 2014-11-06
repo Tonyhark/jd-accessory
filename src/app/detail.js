@@ -10,7 +10,7 @@ define([
 
 ], function ($, util, toolBar, goodsList, attrPanel) {
 
-    //http://localhost:3000/src/html/detail.html?sku=944597&thirdTypeId=3
+    //http://localhost:3000/src/html/detail.html?sku=944597&thirdTypeId=13
 
     var attrData = {},
         modelData = {},
@@ -39,7 +39,6 @@ define([
             document.title = '配件中心';
             var modelData = {},accData={};
 
-
             attrPanel.init(attrData).done(function (res) {
                 modelData.style = res.productMap.style;
                 modelData.brand = res.productMap.brand;
@@ -50,7 +49,7 @@ define([
                 toolBar.init(modelData,accData);
 
             });
-            goodsList.init(goodsData).done(function (res) {
+            goodsList.init(goodsData,window).done(function (res) {
 
             });
             //初始化品牌列表

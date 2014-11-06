@@ -57,7 +57,7 @@ define([
                     model.accessoresList(reqData).done(function (ret) {
 
                         menuListData.initAccessoresType = ret.initAccessoresType;
-                        console.log(menuListData);
+                        //console.log(menuListData);
                         toolBarView.render(menuListData);
                     });
 

@@ -23,9 +23,6 @@ define([
             bottomViewPort,
             visCache = {};
 
-
-
-
         function isVisible(id) {
 
             var offTop, offsetHeight, data;
@@ -71,8 +68,7 @@ define([
 
                 obj.src = obj.img.getAttribute('data-src');
                 slideCache.push(obj);
-            }
-            ;
+            };
 
         }
 
@@ -105,7 +101,6 @@ define([
                 console.timeEnd('render');
             });
         }
-
 
         function handleDefer() {
             //console.time('defer');
@@ -156,7 +151,6 @@ define([
             bottomViewPort = scrollY + innerHeight + 1000;
 
             if (window.scrollY + innerHeight + 1000 > document.body.offsetHeight) {
-
                 callback();
             }
 

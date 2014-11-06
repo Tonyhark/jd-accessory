@@ -4,23 +4,14 @@
 define([
     'common',
     'view/base',
-    'view/widget/endlessScroll',
+    'view/widget/endless',
     'view/detail/attrPanel'
-], function ($, BaseView, endless, AttrPanelView) {
+], function ($, BaseView, Endless, AttrPanelView) {
     var View = $.util.inherit(BaseView);
     $.extend(View.prototype, {
         initialize: function (config) {
+
             var that = this;
-            var i = 0;
-
-            this.fetching = false;
-
-            endless(function () {
-                console.log(++i)
-                that.handleLoadMore()
-            });
-
-            $(document).on('click', '#J_AttrBtn', $.util.bind(this.handleFilter, this));
 
             $(document).on('click', '.tag-model', $.util.bind(this.handleSelectModel, this))
 
@@ -28,8 +19,7 @@ define([
 
         },
         events: {
-            'click #refresh': 'handleLoadMore',
-            'click .sroting-btn': 'handleSort'
+
         },
 
         render: function (data, locator) {
@@ -37,106 +27,79 @@ define([
             View.superClass.prototype.render.call(this, data, locator);
         },
 
-        handleLoadMore: function () {
+//        afterRender: function (data) {
+//
+//        },
+//        handleSort: function (e) {
+//            if (spinner) {
+//                spinner.start();
+//            }
+//            var $target = $(e.currentTarget),
+//                that = this,
+//                columeValue = $target.attr('data-column'),
+//                data = that.reqData;
+//            that.fill = '';
+//
+//            $.extend(data, {
+//                column: columeValue,
+//                pageNo: 0  //页数归零
+//            });
+//
+//            this.model.goodsList(data).done(function (res) {
+//
+//                that.render(res.resultQuery, '#goods-list');
+//                $target.addClass('sorting-current').siblings().removeClass('sorting-current');
+//                // 判断更多
+//                if (!data.pageNo < res.resultQuery.allPageNo) {
+//                    that.$('#refresh').hide();
+//                } else {
+//                    that.$('#refresh').show();
+//                }
+//            });
+//            return false;
+//        },
+//        handleFilter: function (e) {
+//            spinner.start();
+//            var $tar = $(e.currentTarget);
+//            var that = this;
+//            var condition = [];
+//            var priceCondition = '';
+//            var data = this.reqData;
+//            that.fill = '';
+//            $('.attr-first-li').each(function (i, ele) {
+//                var $ele = $(ele),
+//                    attrId = $ele.attr('data-attr-id'),
+//                    optionId = $ele.attr('data-option-id'),
+//                    optionName = $.trim($ele.attr('data-option-name'));
+//                if (optionId) {
+//                    if (attrId != 954) { //价格除外
+//                        var condiStr = attrId + ':' + optionId;
+//                        condition.push(condiStr);
+//                    } else {
+//                        priceCondition = optionName
+//                    }
+//                }
+//            });
+//            condition = condition.join(';');
+//
+//            $.extend(data, {
+//                condition: condition,
+//                priceCondition: priceCondition,
+//                pageNo: 1
+//            });
+//
+//            this.model.goodsList(data).done(function (res) {
+//                that.render(res.resultQuery, '#goods-list');
+//                $('#J_AttrPane').trigger('close');
+//                if (condition != '' || priceCondition != '') {
+//                    $('#J_AttrTrigger').addClass('cur');
+//                } else {
+//                    $('#J_AttrTrigger').removeClass('cur');
+//                }
+//            });
+//            return false;
+//        },
 
-            var that = this;
-            that.fill = 'after';
-            if (that.reqData.pageNo < that.pageTotal) {
-
-                that.reqData.pageNo += 1;
-
-                this.model.goodsList(that.reqData).done(function (res) {
-
-                    that.render(res.resultQuery);
-
-                });
-            }
-        },
-        afterRender: function (data) {
-            var column = this.reqData.column;
-            this.pageTotal = data.allPageNo;
-            this.pageNo = data.currentPageNo;
-            console.log(this.reqData);
-            if (column == 0 || column == 2) {
-
-                $('.pd-item').parent().each(function (i, ele) {
-                    if (i < 3) {
-                        $(ele).addClass('show-icon');
-                    }
-                });
-            }
-
-            return this;
-        },
-        handleSort: function (e) {
-            if (spinner) {
-                spinner.start();
-            }
-            var $target = $(e.currentTarget),
-                that = this,
-                columeValue = $target.attr('data-column'),
-                data = that.reqData;
-            that.fill = '';
-
-            $.extend(data, {
-                column: columeValue,
-                pageNo: 0  //页数归零
-            });
-
-            this.model.goodsList(data).done(function (res) {
-
-                that.render(res.resultQuery, '#goods-list');
-                $target.addClass('sorting-current').siblings().removeClass('sorting-current');
-                // 判断更多
-                if (!data.pageNo < res.resultQuery.allPageNo) {
-                    that.$('#refresh').hide();
-                } else {
-                    that.$('#refresh').show();
-                }
-            });
-            return false;
-        },
-        handleFilter: function (e) {
-            spinner.start();
-            var $tar = $(e.currentTarget);
-            var that = this;
-            var condition = [];
-            var priceCondition = '';
-            var data = this.reqData;
-            that.fill = '';
-            $('.attr-first-li').each(function (i, ele) {
-                var $ele = $(ele),
-                    attrId = $ele.attr('data-attr-id'),
-                    optionId = $ele.attr('data-option-id'),
-                    optionName = $.trim($ele.attr('data-option-name'));
-                if (optionId) {
-                    if (attrId != 954) { //价格除外
-                        var condiStr = attrId + ':' + optionId;
-                        condition.push(condiStr);
-                    } else {
-                        priceCondition = optionName
-                    }
-                }
-            });
-            condition = condition.join(';');
-
-            $.extend(data, {
-                condition: condition,
-                priceCondition: priceCondition,
-                pageNo: 1
-            });
-
-            this.model.goodsList(data).done(function (res) {
-                that.render(res.resultQuery, '#goods-list');
-                $('#J_AttrPane').trigger('close');
-                if (condition != '' || priceCondition != '') {
-                    $('#J_AttrTrigger').addClass('cur');
-                } else {
-                    $('#J_AttrTrigger').removeClass('cur');
-                }
-            });
-            return false;
-        },
         handleSelectModel: function (e) {
             e.preventDefault();
             var $tar = $(e.currentTarget),
@@ -165,8 +128,9 @@ define([
             }
 
             location = baseUrl;
-
         }
+
+
     });
 
     return View;
