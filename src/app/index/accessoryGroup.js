@@ -93,7 +93,7 @@ define([
                 renderAccGroup(data).done(function(res){
                     $tar.addClass('cur');
                     $li.removeClass('cur').addClass('item-selected').attr('data-sku',sku).siblings().attr('data-sku','').removeClass('item-selected');
-                    $('.menu-trigger-model').attr('data-sku',sku)
+                    $('.menu-trigger').attr('data-sku',sku)
                     selLabel.html($tar.html());
 
                     $('#menu-trigger-model').click().find('span').html(model);

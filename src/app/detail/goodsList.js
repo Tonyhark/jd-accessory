@@ -12,9 +12,11 @@ define([
     'common/store',
     'model/accessorie',
     'view/detail/goodsList',
+    'view/detail/attrPanel',
     'text!tpl/detail/goods.mustache',
+    'text!tpl/detail/attrPanel.mustache',
     'view/widget/alert'
-], function($, store, Model, View, cTpl, alertView) {
+], function($, store, Model, View,attrView,cTpl,attrTpl, alertView) {
     return {
         init: function(data,window) {
 
@@ -26,6 +28,13 @@ define([
                     el: '#search-cntr',
                     tpl:  {
                         goods: cTpl
+                    }
+                }),
+                attrPanelView = new attrView({
+                    model: model,
+                    el: '#J_AttrPane',
+                    tpl:{
+                        attrPanel: attrTpl
                     }
                 });
             goodsListView.afterRender = function(data){
@@ -83,8 +92,84 @@ define([
 
             $(document).on('click', '#J_AttrBtn', handleFilter);
             $(document).on('click', '.sroting-btn', handleSort);
+            $(document).on('click', '.tag-model',handleSelectModel);
+            $(document).on('click', '.menu-item-acc', handleSelectAcc);
 
+            function handleSelectAcc(e){
+                e.preventDefault();
+                //判断是否已宣选中
+                var $tar = $(e.currentTarget),
+                    thirdTypeId = $tar.attr('data-acc-id'),
+                    sku = goodsListView.reqData.sku,
+                    data,attrReqData;
+                if($tar.hasClass('cur')){
+                    return false;
+                }
+                data = $.extend(goodsListView.reqData,{
+                    sku:sku,
+                    thirdTypeId: thirdTypeId,
+                    condition : '',
+                    priceCondition : ''
+                });
+                attrReqData = {
+                    sku:sku,
+                    thirdTypeId: thirdTypeId
+                };
+                goodsListView.model.goodsList(data).done(function (res) {
+                    goodsListView.render(res.resultQuery, '#goods-list');
+                    goodsListView.model.attrPanel(attrReqData).done(function(res){
+                        $tar.addClass('cur');
+                        $li.removeClass('cur').addClass('item-selected').attr('data-sku',sku).siblings().attr('data-sku','').removeClass('item-selected');
+                        $('.menu-trigger-model').attr('data-sku',sku)
+                        selLabel.html($tar.html());
+                        $('#menu-trigger-model').click().find('span').html(res.productMap.style);
 
+                        attrPanelView.render(res);
+
+                    });
+                });
+            }
+
+            function handleSelectModel(e){
+                e.preventDefault();
+
+                var $tar = $(e.currentTarget),
+                    $li = $tar.parents('.item-brand'),
+                    sku = $tar.attr('data-sku'),
+                    selLabel = $li.find('.select-sub'),
+                    thirdTypeId = $('#menu-trigger-acc').attr('data-acc'),
+                    data,attrReqData;
+                if($tar.hasClass('cur')){
+                    return false;
+                }
+                data = $.extend(goodsListView.reqData,{
+                    sku:sku,
+                    thirdTypeId: thirdTypeId,
+                    condition : '',
+                    priceCondition : ''
+                });
+
+                attrReqData = {
+                    sku:sku,
+                    thirdTypeId: thirdTypeId
+                }
+                if (spinner) {
+                    spinner.start();
+                }
+                goodsListView.model.goodsList(data).done(function (res) {
+                    goodsListView.render(res.resultQuery, '#goods-list');
+                    goodsListView.model.attrPanel(attrReqData).done(function(res){
+                        $tar.addClass('cur');
+                        $li.removeClass('cur').addClass('item-selected').attr('data-sku',sku).siblings().attr('data-sku','').removeClass('item-selected');
+                        $('.menu-trigger-model').attr('data-sku',sku)
+                        selLabel.html($tar.html());
+                        $('#menu-trigger-model').click().find('span').html(res.productMap.style);
+
+                        attrPanelView.render(res);
+
+                    });
+                });
+            }
 
             function handleSort(e){
                 if (spinner) {
