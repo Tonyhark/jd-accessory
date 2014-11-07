@@ -36,6 +36,8 @@ define([
                         if (v.accessoryList.length > 4) {
                             v.accessoryList = v.accessoryList.slice(0, 4);
                         }
+                        v.mainSku = obj.mainproduct.sku;
+
                         resultObj.accessoryList.push(v);
                     }
                 });
@@ -63,6 +65,9 @@ define([
                     }
                 }).fail(function (error) {
                     alert('网络不稳定，休息一下，稍后试试~');
+                    if (spinner) {
+                        spinner.stop();
+                    }
                     return dtd.reject();
                 });
 
@@ -74,6 +79,9 @@ define([
             // 点击tag事件
             $(document).on('click','.tag-model',function(e){
                 e.preventDefault();
+                if (spinner) {
+                    spinner.start();
+                }
                 var $tar = $(this),
                     $li = $tar.parents('.item-brand'),
                     selLabel = $li.find('.select-sub'),

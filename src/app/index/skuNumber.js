@@ -42,7 +42,6 @@ define([
                 return dtd.reject();
             });
 
-
             return dtd.promise();
 
         }

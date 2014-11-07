@@ -17,7 +17,7 @@ define([
 ], function($, store, Model, View, cTpl, alertView) {
     return {
         init: function(data,window) {
-            var i = 0;
+
             var dtd = $.util.Deferred();
 
             var model = new Model(),
@@ -35,7 +35,6 @@ define([
                 console.log(this.reqData);
                 console.log(this.pageTotal);
                 if (column == 0) {
-
                     $('.pd-item').parent().each(function (i, ele) {
                         if (i < 3) {
                             $(ele).addClass('show-sale-icon').removeClass('show-cmt-icon');
@@ -67,18 +66,14 @@ define([
             model.goodsList(data).done(function(ret) {
 
                 if (typeof ret == 'object') {
-
                     goodsListView
                         .render(ret.resultQuery,'#goods-list');
-
                     return dtd.resolve(ret);
                 } else {
-
                     var alert = new alertView();
                     alert.render({
                         'msg': ret.msg
                     });
-
                     return dtd.reject(ret);
                 }
             }).fail(function(error) {
@@ -88,6 +83,8 @@ define([
 
             $(document).on('click', '#J_AttrBtn', handleFilter);
             $(document).on('click', '.sroting-btn', handleSort);
+
+
 
             function handleSort(e){
                 if (spinner) {
@@ -170,8 +167,6 @@ define([
                 }
             }
 
-
-
             function fetchAcc(){
                 if (fetching) {
                     return;
@@ -207,13 +202,13 @@ define([
                 //console.time('defer');
 
                 var $list = $('.pd-item-li[data-lazy="true"]');
-                var $imgs = $('.pd-img');
 
                 $list.each(function(i,ele){
 
                     if (isVisible(ele)) {
                         var thisImg = $(ele).find('img')[0];
                         var imgSrc = thisImg.getAttribute('data-src');
+                        $(ele).attr('data-lazy','false');
 
                         //create a closure for for simple preload stuff
                         var handler = function () {
@@ -233,11 +228,7 @@ define([
                         img.src = imgSrc;
 
                     }
-
-
                 });
-
-
                 //console.timeEnd('defer');
             }
 

@@ -27,8 +27,7 @@ define([
 //                    }
                 }),
                 menuListData = {
-                    initBrandName: null,
-                    styleByBrandName: null
+                    initBrandName: null
                 };
 
             if(modelData != undefined){
@@ -46,7 +45,7 @@ define([
             }
 
             var reqData = {}
-            reqData._ = 1411965756291;
+            reqData._ = (new Date()).getTime() / 1000;
 
             model.brandsList(reqData).done(function (ret) {
 
@@ -57,7 +56,7 @@ define([
                     model.accessoresList(reqData).done(function (ret) {
 
                         menuListData.initAccessoresType = ret.initAccessoresType;
-                        //console.log(menuListData);
+
                         toolBarView.render(menuListData);
                     });
 

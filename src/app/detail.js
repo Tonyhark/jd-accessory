@@ -11,6 +11,7 @@ define([
 ], function ($, util, toolBar, goodsList, attrPanel) {
 
     //http://localhost:3000/src/html/detail.html?sku=944597&thirdTypeId=13
+    FastClick.attach(document.body);
 
     var attrData = {},
         modelData = {},
@@ -19,8 +20,6 @@ define([
     attrData.sku = sku;
     attrData.thirdTypeId = thirdTypeId;
 
-    modelData.brandName = '苹果';
-    modelData._ = 1411965756291;
 
     var goodsData = {};
     goodsData.pageNo = 1;
@@ -31,7 +30,6 @@ define([
     goodsData.sp = 'asc';
     goodsData.condition = '';
     goodsData.priceCondition = '';
-
 
     routie({
         "": function () {

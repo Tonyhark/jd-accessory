@@ -7,7 +7,8 @@ define( [
 		'Deferred',
 		'common/url',
 		'common/cookie',
-		'common/routie'
+		'common/routie',
+        'common/fastclick'
 	],
 	function( $, mustache, Deferred, url, cookie, routie) {
 		$.mustache = mustache;

@@ -1,10 +1,9 @@
-
     {{#wareInfo}}
-        <li>
+        <li class="pd-item-li" data-lazy="true">
             <a href="http://item.jd.com/{{wareId}}.html" class="pd-item">
                 <div class="pd-pic">
                     <!--此处使用的默认图片，由于图片的尺寸为百分比，无法固定宽高来占位，在此用默认图片来占位，希望能用懒加载方式来替换默认图片，这样两列产品不会产生错位情况 -->
-                    <img src="{{imageurl}}" width="100%" alt="">
+                    <img data-src="{{imageurl}}" width="100%" class="pd-img" alt="">
                 </div>
                 <div class="pd-title">{{wname}}</div>
                 <div class="pd-price">

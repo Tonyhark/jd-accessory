@@ -5,6 +5,13 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
     <title>配件单品</title>
     <link rel="stylesheet" href="../css/style.css"/>
+    <style type="text/css">
+        .dN{
+        display: none;}
+    .loading-sublist{
+        padding-bottom: 15px;
+        text-align: center;}
+    </style>
 </head>
 <body>
 <script type="text/javascript" src="../js/spin.min.js"></script>
@@ -41,7 +48,7 @@
                     </textarea>
                 </ul>
                 <!-- 设备弹框 -->
-                <ul id="menu-list-model" class="menu-list device-pop cur" data-sel-brand="" data-sel-model="">
+                <ul id="menu-list-model" class="menu-list device-pop" data-sel-brand="" data-sel-model="">
                     <textarea class="J_template">
                         {{#initBrandName}}
                         <li class="item-brand" data-brand="{{brandName}}" data-sku="">
@@ -60,10 +67,10 @@
             <!-- E menu-pop 配件/设备选择弹框 -->
             <div class="sortable">
                 <ul class="sorting">
-                    <li class="sorting-current sroting-btn" data-column="0">销量<span class="line"></span></li>
-                    <li class="sroting-btn" data-column="2">好评<span class="line"></span></li>
-                    <li class="sroting-btn" data-column="1">价格<span class="line"></span></li>
-                    <li class="sroting-btn" data-column="3">新品<span class="line"></span></li>
+                    <li class="sorting-current sroting-btn" data-column="0"><span class="sort-item">销量</span><em class="line"></em></li>
+                    <li class="sroting-btn" data-column="2"><span class="sort-item">好评</span><em class="line"></em></li>
+                    <li class="sroting-btn" data-column="1"><span class="sort-item">价格</span><em class="line"></em></li>
+                    <li class="sroting-btn" data-column="3"><span class="sort-item">新品</span><em class="line"></em></li>
                 </ul>
             </div>
 

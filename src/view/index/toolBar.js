@@ -12,6 +12,7 @@ define([
             'click .item-brand-trigger': 'getModelList'
         },
         handleMenu: function(e){
+
             var $tar = $(e.currentTarget),
                 listId = $tar.attr('rel'),
                 curMenuList = $('#'+listId),
@@ -38,7 +39,6 @@ define([
             var $tar = $(e.currentTarget),
                 $subListWrap = $tar.siblings('.sub-list'),
                 openedLiClass = 'cur',
-                selectedLiClass = 'item-selected',
                 reqData = {},
                 $li = $tar.parent(),
                 selectedSku = $li.attr('data-sku');
@@ -48,10 +48,11 @@ define([
                 $li.removeClass(openedLiClass)
 
             }else{
-
+                $li.addClass(openedLiClass);
+                $subListWrap.html($('<div/>',{class:'loading-sublist'}).text('努力加载中...'));
                     var brandName = $tar.attr('data-brand');
                     var $temp = $('<div/>');
-                    reqData.brandName = brandName;
+                    reqData.brandName = encodeURI(brandName);
                     this.model.typeList(reqData).done(function(res){
 
                         $.each(res.styleByBrandName, function(i,v){
@@ -65,12 +66,9 @@ define([
                             $temp.find('[data-sku="'+ selectedSku +'"]').addClass('cur');
                         }
                         $subListWrap.html($temp.html());
-                        $li.addClass(openedLiClass);
-
                     });
             }
         },
-
         afterRender: function(data){
             //判断是否需要显示配件菜单
             if(data.showAccMenu){

@@ -2,7 +2,7 @@
  * Created by soulwu on 14-2-27.
  */
 require.config({
-    baseUrl: '/src/',
+    baseUrl: '/src/', ///active/peijian/
     urlArgs: 'v=20140521',
     //urlArgs: 'v='+(new Date()),
     paths: {

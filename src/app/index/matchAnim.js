@@ -7,8 +7,6 @@ define(['common'],function($){
         animEle: $('.device-anim'),
         init: function(){
             this.animEle.css('height', parseInt($(window)*0.72));
-
-
         },
         start :function(){
             $('.content').hide();
@@ -28,5 +26,4 @@ define(['common'],function($){
             },delay);
         }
     }
-
 });

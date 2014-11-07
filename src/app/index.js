@@ -7,6 +7,7 @@ define([
     'util'
 ], function (skuNumber,defaultList, toolBar,accessoryGroup,matchAnim, util) {
 
+    FastClick.attach(document.body);
     var phoneData = {};
     var SKU ;
     var modelData = {}
@@ -19,7 +20,6 @@ define([
 
     function accGroupOrDefault (){
         if (paramSku) {
-
             //http://localhost:3000/src/html/index.html?sku=944597
             SKU = paramSku;
             //通过sku拉取多配件数据  从这里进来就不需要检测效果
@@ -50,16 +50,23 @@ define([
                         //显示默认类目
                         defaultList.init().done(function(res){
                             toolBar.init().done(function(res){
-
                             });
                         }).fail(function (error) {
-                            alert('在index中的报错');
+                            alert('默认类目拉取失败');
                         });
-
                     }
                 });
             } else {
-                alert('缺少参数：d_brand,d_model');
+
+                matchAnim.stop(); //匹配完毕动画结束
+                //显示默认类目
+                defaultList.init().done(function(res){
+                    toolBar.init().done(function(res){
+                    });
+                }).fail(function (error) {
+                    alert('在index中的报错');
+                });
+
                 return;
             }
         }
