@@ -14,7 +14,6 @@ define([
     FastClick.attach(document.body);
 
     var attrData = {},
-        modelData = {},
         sku = $.url.getParam('sku'),
         thirdTypeId = $.url.getParam('thirdTypeId');
     attrData.sku = sku;

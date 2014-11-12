@@ -19,6 +19,10 @@ define([
             var $tar = $(e.currentTarget),
                 thirdTypeId = $tar.attr('data-acc-id'),
                 sku = $('#menu-trigger-model').attr('data-sku');
+            ping.click({
+                "report_eventid":"Accessory_Category",
+                "report_eventparam": thirdTypeId
+            });
 
             this.goUrl(sku,thirdTypeId);
         },
@@ -30,7 +34,6 @@ define([
                 baseUrl = baseUrl.replace('index.html','detail.html');
                 baseUrl += '?sku='+ sku + '&thirdTypeId='+ thirdTypeId;
             }else{
-
                 baseUrl += '?sku='+ sku;
             }
 

@@ -2,7 +2,7 @@
  * Created by soulwu on 14-2-27.
  */
 require.config({
-	baseUrl: '/html/courier/dist/v1/',
+	baseUrl: '/html/courier/dist/',
 	urlArgs: 'v=20140521',
 //	urlArgs: 'v='+(new Date()),
 	paths: {

@@ -7,3 +7,4 @@
 *.zip
 .idea/  
 dist/  
+node_modules/

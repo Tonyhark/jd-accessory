@@ -12,8 +12,7 @@ define([
 
             $(document).on('click','#J_AttrTrigger', $.util.bind(this.triggerAttr, this));
             $(document).on('click', '.overlay',$.util.bind(this.closeAttr, this));
-            $('#J_AttrPane').bind('close', $.util.bind(this.closeAttr,this))
-
+            this.$el.bind('close', $.util.bind(this.closeAttr,this))
         },
         events: {
             'click .attr-first-li': 'showAttrSecond',
@@ -21,6 +20,9 @@ define([
         },
 
         triggerAttr: function(e){
+            if($('#menu-trigger-acc,#menu-trigger-model').hasClass('cur')){
+                return;
+            }
             $('.overlay').show();
             $('.filter').addClass('active');
         },
@@ -33,6 +35,7 @@ define([
         closeAttr: function(){
             $('.overlay').hide();
             $('.filter,.filter-sub').removeClass('active');
+            $('.attr-second').removeClass('cur')
         },
         closeSubAttr: function(li){
             $('.filter-sub').removeClass('active');

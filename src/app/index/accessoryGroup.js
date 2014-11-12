@@ -8,8 +8,9 @@ define([
     'model/accessorie',
     'view/index/accessoryGroup',
     'text!tpl/index/accGroup.mustache',
-    'view/widget/alert'
-], function ($, store, Model, View, cTpl, alertView) {
+    'view/widget/alert',
+    'util'
+], function ($, store, Model, View, cTpl, alertView,util) {
     return {
         init: function (data) {
             var dtd = $.util.Deferred();
@@ -24,7 +25,7 @@ define([
                 });
 
             var mapObj = function(obj){
-
+                console.log(obj);
                 var resultObj = {};
                 resultObj.accessoryList = [];
 
@@ -38,10 +39,15 @@ define([
                         }
                         v.mainSku = obj.mainproduct.sku;
 
+                        $.each(v.accessoryList,function(index,acc){
+                            v.accessoryList[index].price = util.formatPrice(acc.price);
+                        });
+
+
                         resultObj.accessoryList.push(v);
                     }
                 });
-                console.log(resultObj);
+
                 return resultObj;
             };
 
@@ -76,7 +82,7 @@ define([
 
             renderAccGroup(data);
 
-            // 点击tag事件
+            // 点击手机型号事件
             $(document).on('click','.tag-model',function(e){
                 e.preventDefault();
                 if (spinner) {
@@ -96,7 +102,24 @@ define([
                     $('.menu-trigger').attr('data-sku',sku)
                     selLabel.html($tar.html());
 
-                    $('#menu-trigger-model').click().find('span').html(model);
+                    $('#menu-trigger-model').trigger('close').find('span').html(model);
+
+                });
+
+
+            });
+
+            $(document).on('click','.pd-more-link',function(e){
+                ping.click({
+                    "report_eventid":"Accessory_Category",
+                    "report_eventparam": '查看更多'
+                });
+            });
+            $(document).on('click','.pd-item',function(e){
+                var sku = $(this).attr('data-sku');
+                ping.click({
+                    "report_eventid":"Accessory_Productid",
+                    "report_eventparam": sku
                 });
             });
 

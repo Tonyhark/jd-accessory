@@ -14,13 +14,6 @@ define([
             var dtd = $.util.Deferred();
 
             var model = new Model();
-//                skuNumberView = new View({
-//                    model: model,
-//                    el: '#J_AccGroup',
-//                    tpl:  {
-//                        accGroup: cTpl
-//                    }
-//                });
 
             model.skuNumber(data).done(function (res) {
 

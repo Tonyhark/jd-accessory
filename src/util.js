@@ -14,7 +14,7 @@ define(function() {
 		},
 
 		formatPrice: function(price) {
-			return (parseInt(price, 10) / 100).toFixed(2)
+			return price.toFixed(2)
 		},
 		// ,
 		// getImage46: function(url){

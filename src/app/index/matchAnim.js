@@ -16,12 +16,12 @@ define(['common'],function($){
             var that = this;
             var delay =  1000;
             var txt;
-            modelName ?  txt = modelName : txt ='没有检测到您的机型呢';
+            $('.content').show();
+            txt = modelName ?  modelName : '没有检测到您的机型呢';
             $('.loader-txt').text(txt);
             var t = setTimeout(function(){
 
                 that.animEle.addClass('back');
-                $('.content').show();
 
             },delay);
         }

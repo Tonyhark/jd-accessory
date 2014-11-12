@@ -30,6 +30,9 @@ define([
             if ($.url.getParam('d_brand') && $.url.getParam('d_model')) {
 
                 matchAnim.start();//开始loading动画
+                if(spinner){
+                    spinner.stop();
+                }
 
                 //http://localhost:3000/src/html/index.html?mobiletype=1&client=android&d_brand=YuLong&d_model=Coolpad8750
 
@@ -48,8 +51,10 @@ define([
                     }else{
                         matchAnim.stop(); //匹配完毕动画结束
                         //显示默认类目
+
                         defaultList.init().done(function(res){
                             toolBar.init().done(function(res){
+
                             });
                         }).fail(function (error) {
                             alert('默认类目拉取失败');
@@ -62,9 +67,10 @@ define([
                 //显示默认类目
                 defaultList.init().done(function(res){
                     toolBar.init().done(function(res){
+
                     });
                 }).fail(function (error) {
-                    alert('在index中的报错');
+                    alert('默认类目拉取失败');
                 });
 
                 return;

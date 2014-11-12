@@ -15,8 +15,9 @@ define([
     'view/detail/attrPanel',
     'text!tpl/detail/goods.mustache',
     'text!tpl/detail/attrPanel.mustache',
+    'util',
     'view/widget/alert'
-], function($, store, Model, View,attrView,cTpl,attrTpl, alertView) {
+], function($, store, Model, View,attrView,cTpl,attrTpl,util, alertView) {
     return {
         init: function(data,window) {
 
@@ -41,8 +42,8 @@ define([
                 var column = this.reqData.column;
                 this.pageTotal = data.allPageNo;
                 this.pageNo = data.currentPageNo;
-                console.log(this.reqData);
-                console.log(this.pageTotal);
+//                console.log({'请求数据':this.reqData});
+//                console.log('总页数：' + this.pageTotal);
                 if (column == 0) {
                     $('.pd-item').parent().each(function (i, ele) {
                         if (i < 3) {
@@ -75,8 +76,8 @@ define([
             model.goodsList(data).done(function(ret) {
 
                 if (typeof ret == 'object') {
-                    goodsListView
-                        .render(ret.resultQuery,'#goods-list');
+
+                    rendGoodsList(ret.resultQuery)
                     return dtd.resolve(ret);
                 } else {
                     var alert = new alertView();
@@ -94,20 +95,42 @@ define([
             $(document).on('click', '.sroting-btn', handleSort);
             $(document).on('click', '.tag-model',handleSelectModel);
             $(document).on('click', '.menu-item-acc', handleSelectAcc);
+            $(document).on('click','.pd-item',function(e){
+                var sku = $(this).attr('data-sku');
+                ping.click({
+                    "report_eventid":"Accessory_Productid",
+                    "report_eventparam": sku
+                });
+            });
+
+
+            function rendGoodsList(data){
+
+                $.each(data.list,function(i,v){
+                    data.list[i].price = util.formatPrice(v.price)
+                });
+
+                goodsListView.render(data,'#goods-list');
+            }
 
             function handleSelectAcc(e){
                 e.preventDefault();
-                //判断是否已宣选中
+
                 var $tar = $(e.currentTarget),
                     thirdTypeId = $tar.attr('data-acc-id'),
                     sku = goodsListView.reqData.sku,
                     data,attrReqData;
+                //判断是否已宣选中
                 if($tar.hasClass('cur')){
                     return false;
                 }
+                if($tar.hasClass('menu-item-acc-all')){
+                    goIndex(sku)
+                    return;
+                }
                 data = $.extend(goodsListView.reqData,{
-                    sku:sku,
                     thirdTypeId: thirdTypeId,
+                    pageNo:1,
                     condition : '',
                     priceCondition : ''
                 });
@@ -115,18 +138,25 @@ define([
                     sku:sku,
                     thirdTypeId: thirdTypeId
                 };
+                if (spinner) {
+                    spinner.start();
+                }
                 goodsListView.model.goodsList(data).done(function (res) {
-                    goodsListView.render(res.resultQuery, '#goods-list');
+                    rendGoodsList(res.resultQuery);
                     goodsListView.model.attrPanel(attrReqData).done(function(res){
+                        $('.menu-item-acc').filter('.cur').removeClass('cur');
                         $tar.addClass('cur');
-                        $li.removeClass('cur').addClass('item-selected').attr('data-sku',sku).siblings().attr('data-sku','').removeClass('item-selected');
-                        $('.menu-trigger-model').attr('data-sku',sku)
-                        selLabel.html($tar.html());
-                        $('#menu-trigger-model').click().find('span').html(res.productMap.style);
+                        $('#menu-trigger-acc').attr('data-acc',res.thirdTypeId);
+                        $('#menu-trigger-acc').trigger('close').find('span').html(res.thirdTypeName);
 
                         attrPanelView.render(res);
 
                     });
+                });
+
+                ping.click({
+                    "report_eventid":"Accessory_Category",
+                    "report_eventparam": thirdTypeId
                 });
             }
 
@@ -136,15 +166,15 @@ define([
                 var $tar = $(e.currentTarget),
                     $li = $tar.parents('.item-brand'),
                     sku = $tar.attr('data-sku'),
+                    thirdTypeId = goodsListView.reqData.thirdTypeId,
                     selLabel = $li.find('.select-sub'),
-                    thirdTypeId = $('#menu-trigger-acc').attr('data-acc'),
                     data,attrReqData;
                 if($tar.hasClass('cur')){
                     return false;
                 }
                 data = $.extend(goodsListView.reqData,{
                     sku:sku,
-                    thirdTypeId: thirdTypeId,
+                    pageNo: 1,
                     condition : '',
                     priceCondition : ''
                 });
@@ -157,13 +187,14 @@ define([
                     spinner.start();
                 }
                 goodsListView.model.goodsList(data).done(function (res) {
-                    goodsListView.render(res.resultQuery, '#goods-list');
+                    rendGoodsList(res.resultQuery);
                     goodsListView.model.attrPanel(attrReqData).done(function(res){
+
                         $tar.addClass('cur');
                         $li.removeClass('cur').addClass('item-selected').attr('data-sku',sku).siblings().attr('data-sku','').removeClass('item-selected');
                         $('.menu-trigger-model').attr('data-sku',sku)
                         selLabel.html($tar.html());
-                        $('#menu-trigger-model').click().find('span').html(res.productMap.style);
+                        $('#menu-trigger-model').trigger('close').attr('data-sku',sku).find('span').html(res.productMap.style);
 
                         attrPanelView.render(res);
 
@@ -186,15 +217,44 @@ define([
 
                 goodsListView.model.goodsList(data).done(function (res) {
 
-                    goodsListView.render(res.resultQuery, '#goods-list');
+                    rendGoodsList(res.resultQuery);
                     $target.addClass('sorting-current').siblings().removeClass('sorting-current');
                     //handleDefer();
                 });
+
+                switch (columeValue){
+                    case 0:
+                        ping.click({
+                            "report_eventid":"AccessoryDetail_SortbyAmount"
+                        });
+                        break;
+                    case 2:
+                        ping.click({
+                            "report_eventid":"AccessoryDetail_SortbyEvaluate"
+                        });
+                        break;
+                    case 1:
+                        ping.click({
+                            "report_eventid":"AccessoryDetail_SortbyPrice"
+                        });
+                        break;
+                    case 3:
+                        ping.click({
+                            "report_eventid":"AccessoryDetail_SortbyNew"
+                        });
+                        break;
+                    default :
+                        break;
+
+                }
+
                 return false;
             }
 
             function handleFilter(e){
-                spinner.start();
+                if (spinner) {
+                    spinner.start();
+                }
                 var $tar = $(e.currentTarget);
                 var that = this;
                 var condition = [];
@@ -224,7 +284,7 @@ define([
                 });
 
                 goodsListView.model.goodsList(data).done(function (res) {
-                    goodsListView.render(res.resultQuery, '#goods-list');
+                    rendGoodsList(res.resultQuery);
                     $('#J_AttrPane').trigger('close');
                     if (condition != '' || priceCondition != '') {
                         $('#J_AttrTrigger').addClass('cur');
@@ -232,6 +292,11 @@ define([
                         $('#J_AttrTrigger').removeClass('cur');
                     }
                 });
+
+                ping.click({
+                    "report_eventid":"Accessory_Filter"
+                });
+
                 return false;
             }
 
@@ -259,16 +324,15 @@ define([
                     fetching = true;
                 }
                 // 判断有没有下一页
-                console.log(goodsListView.reqData.pageNo);
-                console.log(goodsListView.pageTotal);
-
                 goodsListView.reqData.pageNo+=1;
                 goodsListView.fill = 'after';
 
                 model.goodsList(data).done(function(ret) {
 
                     if (typeof ret == 'object') {
-                        goodsListView.render(ret.resultQuery,'#goods-list');
+
+
+                        rendGoodsList(ret.resultQuery);
 
                         fetching = false;
                     } else {
@@ -311,18 +375,13 @@ define([
                         var img = new Image();
                         img.onload = handler;
                         img.src = imgSrc;
-
                     }
                 });
                 //console.timeEnd('defer');
             }
 
             function handleScroll(e, force) {
-                //console.log(i++);
                 //if scroll hasn't changed, do nothing;
-
-                console.log('lastScollY = ' + lastScrollY + 'nowScroll= '+ window.scrollY)
-
                 if (!force && lastScrollY == window.scrollY) {
                     window.setTimeout(handleScroll, 100);
 
@@ -347,6 +406,18 @@ define([
             }
 
             window.setTimeout(handleScroll, 100);
+
+            function goIndex(sku) {
+
+                var baseUrl = location.href;
+                baseUrl = baseUrl.substring(0, baseUrl.indexOf('?'));
+                if (sku) {
+                    baseUrl = baseUrl.replace('detail', 'index');
+                    baseUrl += '?sku=' + sku;
+                }
+
+                location = baseUrl;
+            }
 
             return dtd.promise();
 

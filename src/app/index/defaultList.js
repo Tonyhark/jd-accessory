@@ -23,7 +23,8 @@ define([
                     }
                 });
             defaultListView.afterRender = function(data){
-                handleScroll(null, true)
+                $('#J_DefaultList').show();
+                handleScroll(null, true);
                 return this;
             };
             defaultListView.page = 1;
@@ -56,7 +57,7 @@ define([
             //'{"pagesize":"20","page":"1","catelogyId":"868","isLoadPromotion":true,"isLoadAverageScore":true}'
 
             model.defaultList(stringifyBody(page,nowCateId)).done(function(res){
-                console.log(res);
+                //console.log(res);
 
                 if(res.code==0){
                     defaultListView.render(res)
@@ -80,7 +81,7 @@ define([
 
                 var body = '{"pagesize":"20","page":"'+page+'","catelogyId":"'+cataeId+'","isLoadPromotion":true,"isLoadAverageScore":true}';
                 reqData.body =body;
-                console.log(reqData)
+                //console.log({'默认配件请求数据':reqData})
                 return reqData;
             }
 
@@ -134,11 +135,11 @@ define([
                 //console.time('defer');
 
                 var $list = $('.pd-item-li[data-lazy="true"]');
-                var $imgs = $('.pd-img');
 
                 $list.each(function(i,ele){
 
                     if (isVisible(ele)) {
+
                         var thisImg = $(ele).find('img')[0];
                         var imgSrc = thisImg.getAttribute('data-src');
                         $(ele).attr('data-lazy','false');
@@ -191,13 +192,16 @@ define([
                                 page = 0; //下次拉取会+1
                                 nowCateId = cateTwoId;
                             }
+                            break;
                         case cateTwoId:
-                            console.log (nowCateId)
                             if(page < pageTotal){
                                 fetchDefaultList();
                             }else{
                                 //没有更多了
                             }
+                            break;
+                        default:
+                            break;
                     }
                 }
 
@@ -206,6 +210,14 @@ define([
             }
 
             window.setTimeout(handleScroll, 120);
+
+            $(document).on('click','.pd-item',function(e){
+                var sku = $(this).attr('data-sku');
+                ping.click({
+                    "report_eventid":"Accessory_Productid",
+                    "report_eventparam": sku
+                });
+            });
 
             return dtd.promise();
 

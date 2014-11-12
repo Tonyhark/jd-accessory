@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
     <title></title>
-    <link rel="stylesheet" href="../css/style.css"/>
+    <link rel="stylesheet" href="../css/style.css?v=@@version"/>
     <style type="text/css">
         .dN{
             display: none;}
         .loading-sublist{
             padding-bottom: 15px;
             text-align: center;}
+        #J_DefaultList{
+            display: none;}
     </style>
 </head>
 <body class="index">
@@ -81,10 +83,7 @@
                     </ul>
                 </div>
             </div>
-
         </div>
-
-
     </div>
     <!-- E 内容 -->
     <div class="overlay dN"></div>
@@ -104,10 +103,20 @@
 <div id="J_view_message"></div>
 <script src="../require.js"></script>
 <script src="http://h5.m.jd.com/active/common/ping.min.js"></script>
-<script src="../config.js?v=@@version"></script>
+<script type="text/javascript">
+    ping.init();
+</script>
+<!-- replace:index app/index.min.js -->
+<script src="../config.js"></script>
+<!-- endreplace -->
+
 <script>
     require(['app/index']);
-
+    window.onload=function(){
+        setTimeout(function(){
+            ping.init();
+        },500);
+    }
 </script>
 </body>
 </html>

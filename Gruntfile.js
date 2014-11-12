@@ -5,10 +5,11 @@
  *
  */
 module.exports = function(grunt) {
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-replace');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-requirejs');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-replace');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
@@ -17,9 +18,9 @@ module.exports = function(grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: 'src/<%= pkg.dir %>/js',
+          cwd: 'src/js',
           src: '*.js',
-          dest: 'dist/<%= pkg.dir %>/js'
+          dest: 'dist/js'
         }]
       }
     },
@@ -31,14 +32,14 @@ module.exports = function(grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: 'src/<%= pkg.dir %>/html/',
+          cwd: 'src/html/',
           src: "*.html",
-          dest: "dist/<%= pkg.dir %>/html/"
+          dest: "dist/html/"
         }, {
           expand: true,
-          cwd: 'src/<%= pkg.dir %>/css/',
+          cwd: 'src/css/',
           src: "*.css",
-          dest: "dist/<%= pkg.dir %>/css/"
+          dest: "dist/css/"
         }],
         options: {
           process: function(content, srcpath) {
@@ -47,8 +48,8 @@ module.exports = function(grunt) {
             content = content.replace(/@@version/g, version);
             //替换文件引入
             content = content.replace(/<script(.*)require.js(.*)\>\<\/script\>/, '');
-            content = content.replace(/<script(.*)config.js(.*)\>\<\/script\>/, '<script src="../app/@@minfile?v=' + version + '"></script>');
-
+              content = content.replace(/\<!--(.*)replace:index(.*(\r\n|\n))+.*\<!--(.*)endreplace(.*)--\>/mg, '<script type="text/javascript" src="../app/@@minfile?v=' + version + '"></script>');
+              content = content.replace(/\<!--(.*)replace:detail(.*(\r\n|\n))+.*\<!--(.*)endreplace(.*)--\>/mg, '<script type="text/javascript" src="../app/@@minfile_detail?v=' + version + '"></script>');
             return content;
           }
         }
@@ -56,24 +57,35 @@ module.exports = function(grunt) {
       img: {
         files: [{
           expand: true,
-          cwd: 'src/<%= pkg.dir %>/img/',
+          cwd: 'src/img/',
           src: "*",
-          dest: "dist/<%= pkg.dir %>/img/"
+          dest: "dist/img/"
 
-        }],
+        }]
       }
     },
     requirejs: {
       compile: {
         options: {
-          baseUrl: "src/<%= pkg.dir %>/", //js根目录  
+          baseUrl: "src/", //js根目录
           name: 'app/index', //执行的第一个requirejs包  
           optimize: 'uglify2',
-          mainConfigFile: "src/<%= pkg.dir %>/config.js", //requirejs的配置文件  
-          out: "dist/<%= pkg.dir %>/app/<%= pkg.min_file %>", //输出的压缩文件  
+          mainConfigFile: "src/config.js", //requirejs的配置文件
+          out: "dist/app/<%= pkg.min_file %>", //输出的压缩文件
           findNestedDependencies: true, //必须指定让requirejs能找到嵌套的文件  
-          include: ['../require.js'] //指定requirejs所在的位置。  
+          include: ['./require.js'] //指定requirejs所在的位置。
         }
+      },
+      detail:{
+          options:{
+              baseUrl: "src/", //js根目录
+              name: 'app/detail', //执行的第一个requirejs包
+              optimize: 'uglify2',
+              mainConfigFile: "src/config.js", //requirejs的配置文件
+              out: "dist/app/<%= pkg.min_file_detail %>", //输出的压缩文件
+              findNestedDependencies: true, //必须指定让requirejs能找到嵌套的文件
+              include: ['./require.js'] //指定requirejs所在的位置。
+          }
       }
     },
     //minfile: grunt.file.read('dist/<%= pkg.dir %>/app/<%= pkg.min_file %>'),
@@ -83,13 +95,16 @@ module.exports = function(grunt) {
           patterns: [{
             match: 'minfile',
             replacement: '<%= pkg.min_file %>'
+          },{
+              match: 'minfile_detail',
+              replacement: '<%= pkg.min_file_detail %>'
           }]
         },
         files: [{
           expand: true,
           flatten: true,
-          src: ['dist/v1/html/*.html'],
-          dest: 'dist/v1/html/'
+          src: ['dist/html/*.html'],
+          dest: 'dist/html/'
         }]
       }
     }

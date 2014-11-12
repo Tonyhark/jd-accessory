@@ -2,7 +2,8 @@
   "name": "accessory",
   "version": "1.0.0",
   "description": "",
-  "min_file": "accessory.min.js",
+  "min_file": "index.min.js",
+  "min_file_detail": "detail.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,6 +11,7 @@
   "license": "ISC",
   "devDependencies": {
     "grunt": "~0.4.2",
+	"grunt-contrib-concat": "~0.5.0",
     "grunt-contrib-copy": "~0.5.0",
     "grunt-contrib-requirejs": "~0.4.3",
     "grunt-contrib-uglify": "~0.3.2",

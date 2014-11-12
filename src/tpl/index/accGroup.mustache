@@ -1,24 +1,23 @@
 {{#accessoryList}}
     <div class="pd-list-con">
         <div class="banner-cate">
-            <a href="#" third-type-id="{{thirdTypeId}}"><img src="../img/acc-banner-{{thirdTypeId}}.jpg" width="100%" alt="{{thirdName}}"></a>
+            <a href="detail.html?sku={{mainSku}}&thirdTypeId={{thirdTypeId}}" third-type-id="{{thirdTypeId}}"><img src="../img/acc-banner-{{thirdTypeId}}.jpg" width="100%" alt="{{thirdName}}"></a>
         </div>
         <div class="pd-list clearfix">
             <div class="pd-list-cate">
                 <ul class="clearfix">
                     {{#accessoryList}}
                         <li>
-                            <a href="http://item.jd.com/{{sku}}.html" class="pd-item">
+                            <a href="openApp.jdMobile://virtual?params={'category':'jump','des':'productDetail','skuId':'{{sku}}','sourceType':'h5jingxuan','sourceValue':'brand'}" class="pd-item" data-sku="{{sku}}">
                                 <div class="pd-pic">
-
-                                    <!--此处使用的默认图片，由于图片的尺寸为百分比，无法固定宽高来占位，在此用默认图片来占位，希望能用懒加载方式来替换默认图片，这样两列产品不会产生错位情况 -->
                                     <img src="http://img30.360buyimg.com/n3/{{imageUrl}}" width="100%" alt="">
                                 </div>
                                 <div class="pd-title">{{name}}</div>
                                 <div class="pd-price">
-                                    <span class="pd-price-num"><em class="price-unit">¥</em>{{maPrice}}</span>
+                                    <span class="pd-price-num"><em class="price-unit">¥</em>{{price}}</span>
                                 </div>
                                 <div class="feedback">
+
                                 </div>
                             </a>
                         </li>
@@ -26,6 +25,6 @@
                 </ul>
             </div>
         </div>
-        <div class="pd-list-more"><a href="detail.html?sku={{mainSku}}&thirdTypeId={{thirdTypeId}}">查看更多</a></div>
+        <div class="pd-list-more"><a href="detail.html?sku={{mainSku}}&thirdTypeId={{thirdTypeId}}" class="pd-more-link">查看更多</a></div>
     </div>
 {{/accessoryList}}

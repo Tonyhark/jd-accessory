@@ -74,7 +74,7 @@ define([
         skuNumber: function(data,options){
             options = options || {};
 
-            options.url = 'http://10.24.76.129:8080/h5sh/h5api.jsp';
+            options.url = 'http://172.22.144.53:1604/h5api.jsp';
             options.data= data;
             return Model.superClass.prototype.fetch.call(this, options);
         }
