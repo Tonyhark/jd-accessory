@@ -109,12 +109,11 @@ define([
                     .attr('data-sku', sku)
                     .addClass('item-selected')
                     .find('.select-sub').text(style);
-
-                //详细页中需要设置配件选中id和名称
-                if (data.acc) {
-                    $('#menu-trigger-acc').attr('data-acc', data.acc.accId).find('span').text(data.acc.accName);
-                    $('#menu-list-acc').find('[data-acc-id="' + data.acc.accId + '"]').addClass('cur');
-                }
+            }
+            //详细页中需要设置配件选中id和名称
+            if (data.acc) {
+                $('#menu-trigger-acc').attr('data-acc', data.acc.accId).find('span').text(data.acc.accName);
+                $('#menu-list-acc').find('[data-acc-id="' + data.acc.accId + '"]').addClass('cur');
             }
 
             $('#J_Menu').show();

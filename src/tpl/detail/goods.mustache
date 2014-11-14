@@ -4,7 +4,7 @@
         openApp.jdMobile://virtual?params={'category':'jump','des':'productDetail','skuId':'{{sku}}','sourceType':'h5jingxuan','sourceValue':'brand'}
 " class="pd-item" data-sku="{{sku}}">
             <div class="pd-pic">
-                <i class="pd-icon"></i>
+                <i class="pd-icon"><span class="sales-count">月销{{sales}}<em>+</em></span></i>
                 {{#imageUrl}}
                     <img class="pd-img" data-src="http://img30.360buyimg.com/n3/{{imageUrl}}" width="100%" alt="">
                 {{/imageUrl}}
@@ -19,7 +19,7 @@
                 <span class="pd-price-num"><em class="price-unit">¥</em>{{price}}</span>
             </div>
             <div class="feedback">
-                <span class="num">{{comments}} 好评</span>
+                <span class="num">已有{{comments}}人评价</span>
             </div>
         </a>
     </li>

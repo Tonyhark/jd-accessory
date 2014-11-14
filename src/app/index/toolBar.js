@@ -9,9 +9,8 @@ define([
     'common/store',
     'model/accessorie',
     'view/index/toolBar',
-    //'text!tpl/',
     'view/widget/alert'
-], function ($, store, Model, View, alertView) { // cTpl,
+], function ($, store, Model, View, AlertView) { // cTpl,
     return {
         init: function (modelData,accData) {
             var dtd = $.util.Deferred();
@@ -72,7 +71,9 @@ define([
                     return dtd.reject(ret);
                 }
             }).fail(function (error) {
-                alert('网络不稳定，休息一下，稍后试试~');
+                (new AlertView()).render({
+                    'msg': '网络不稳定，休息一下，稍后试试~'
+                });
                 return dtd.reject();
             });
 

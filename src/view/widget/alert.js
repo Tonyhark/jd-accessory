@@ -24,14 +24,14 @@ define([
 			var offsetHeight = document.documentElement.clientHeight || document.body.clientHeight;
 
 			$('.J_alert').css({top:((offsetHeight-alertHeight)/2 )+'px'});
-			//更改overlay的大小
+			//alert-overlay
 			var offsetWidth = document.documentElement.clientWidth || document.body.clientWidth;
 			if(offsetHeight < $('body').height()){
 				offsetHeight = $('body').height();
 			}
-			$('.overlay').css({height:offsetHeight+'px',width:offsetWidth+'px'});
+			$('.alert-overlay').css({height:offsetHeight+'px',width:offsetWidth+'px'});
 			//禁止滚动
-			$('.overlay').on('touchmove', function(event) {
+			$('.alert-overlay').on('touchmove', function(event) {
 				event.preventDefault();
 			});
 		},

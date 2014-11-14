@@ -37,7 +37,8 @@ define([
             var modelData = {},accData={};
 
             attrPanel.init(attrData).done(function (res) {
-                modelData.style = res.productMap.style;
+                modelData.style = res.productMap.style?res.productMap.style: res.productMap.name;
+
                 modelData.brand = res.productMap.brand;
                 modelData.sku = res.productMap.sku;
 

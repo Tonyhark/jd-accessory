@@ -7,8 +7,9 @@ define([
     'model/accessorie',
     'view/index/defaultList',
     'text!tpl/index/defaultList.mustache',
-    'view/widget/alert'
-], function ($, store, Model, View, cTpl, alertView) {
+    'view/widget/alert',
+    'app/index/accessoryGroup'
+], function ($, store, Model, View, cTpl, alertView,initAccGroup) {
     return {
         init: function (data) {
 
@@ -24,12 +25,14 @@ define([
                 });
             defaultListView.afterRender = function(data){
                 $('#J_DefaultList').show();
+                clearTimeout(Tid);
                 handleScroll(null, true);
                 return this;
             };
             defaultListView.page = 1;
 
-            var fetching = false,
+            var Tid,
+                fetching = false,
                 page = 1,
                 pageTotal = 5,
                 cateOneId = '868',
@@ -74,6 +77,39 @@ define([
 
                 return dtd.reject();
             });
+
+            $(document).on('click.g','.tag-model',function(e){
+                e.preventDefault();
+                if (spinner) {
+                    spinner.start();
+                }
+                var $tar = $(this),
+                    sku = $tar.attr('data-sku'),
+                    data = {},
+                    phoneData ={};
+                data.sku = $tar.attr('data-sku');
+                //关闭原有的timeout 和事件
+
+
+                //初始化accGroup
+                initAccGroup.init(data).done(function(res){
+
+                    clearTimeout(Tid);
+                    $(document).off('click.g','.tag-model')
+                    initAccGroup.setPhoneMenuCur($tar,sku);
+                    $('#menu-trigger-acc').show();
+                    $('#J_DefaultList').remove();
+
+                }).fail(function(error){
+                    $('#menu-trigger-model').trigger('close');
+
+                    (new alertView()).render({
+                        'msg': '程序猿开小差啦，换一个试试~'
+                    });
+                });
+            });
+
+
 
             function stringifyBody(page,catelogyId) {
 
@@ -164,17 +200,17 @@ define([
                     }
                 });
 
-
                 //console.timeEnd('defer');
             }
 
             function handleScroll(e, force) {
 
                 if (!force && lastScrollY == window.scrollY) {
-                    window.setTimeout(handleScroll, 120);
 
+                    Tid = window.setTimeout(handleScroll, 120);
                     return;
                 } else {
+
                     lastScrollY = window.scrollY;
                 }
 
@@ -206,10 +242,10 @@ define([
                 }
 
                 handleDefer();
-                window.setTimeout(handleScroll, 120);
+                Tid =window.setTimeout(handleScroll, 120);
             }
 
-            window.setTimeout(handleScroll, 120);
+            //Tid = window.setTimeout(handleScroll, 120); 写在afterRender里
 
             $(document).on('click','.pd-item',function(e){
                 var sku = $(this).attr('data-sku');

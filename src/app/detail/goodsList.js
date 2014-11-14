@@ -17,7 +17,7 @@ define([
     'text!tpl/detail/attrPanel.mustache',
     'util',
     'view/widget/alert'
-], function($, store, Model, View,attrView,cTpl,attrTpl,util, alertView) {
+], function($, store, Model, View,attrView,cTpl,attrTpl,util, AlertView) {
     return {
         init: function(data,window) {
 
@@ -47,21 +47,27 @@ define([
                 if (column == 0) {
                     $('.pd-item').parent().each(function (i, ele) {
                         if (i < 3) {
-                            $(ele).addClass('show-sale-icon').removeClass('show-cmt-icon');
+                            $(ele).addClass('show-salenum-icon').removeClass('show-cmt-icon');
+
+                        }else{
+                            return false;
                         }
                     });
                 }else if(column == 2){
                     $('.pd-item').parent().each(function (i, ele) {
                         if (i < 3) {
-                            $(ele).addClass('show-cmt-icon').removeClass('show-sale-icon');
+                            $(ele).addClass('show-cmt-icon').removeClass('show-salenum-icon');
+                        }else{
+                            return false;
                         }
                     });
                 }
-
+                clearTimeout(Tid);
                 handleScroll(null, true);
                 return this;
             };
-            var fetching = false,
+            var Tid,
+                fetching = false,
                 page = 1,
                 lastScrollY = window.pageYOffset,
 
@@ -75,19 +81,20 @@ define([
 
             model.goodsList(data).done(function(ret) {
 
-                if (typeof ret == 'object') {
+                if (ret.resultQuery) {
 
                     rendGoodsList(ret.resultQuery)
                     return dtd.resolve(ret);
                 } else {
-                    var alert = new alertView();
-                    alert.render({
-                        'msg': ret.msg
+                    (new AlertView()).render({
+                        'msg': '网络不稳定，休息一下，稍后试试~'
                     });
                     return dtd.reject(ret);
                 }
             }).fail(function(error) {
-                alert('网络不稳定，休息一下，稍后试试~');
+                (new AlertView()).render({
+                    'msg': '网络不稳定，休息一下，稍后试试~'
+                });
                 return dtd.reject();
             });
 
@@ -107,7 +114,8 @@ define([
             function rendGoodsList(data){
 
                 $.each(data.list,function(i,v){
-                    data.list[i].price = util.formatPrice(v.price)
+                    data.list[i].price = util.formatPrice(v.price);
+                    data.list[i].sales = util.formatSales(v.sales)
                 });
 
                 goodsListView.render(data,'#goods-list');
@@ -152,6 +160,10 @@ define([
                         attrPanelView.render(res);
 
                     });
+                }).fail(function(err){
+                    (new AlertView()).render({
+                        'msg': '网络不稳定，休息一下，稍后试试~'
+                    });
                 });
 
                 ping.click({
@@ -166,6 +178,7 @@ define([
                 var $tar = $(e.currentTarget),
                     $li = $tar.parents('.item-brand'),
                     sku = $tar.attr('data-sku'),
+                    phoneModel = $tar.text(),
                     thirdTypeId = goodsListView.reqData.thirdTypeId,
                     selLabel = $li.find('.select-sub'),
                     data,attrReqData;
@@ -194,20 +207,28 @@ define([
                         $li.removeClass('cur').addClass('item-selected').attr('data-sku',sku).siblings().attr('data-sku','').removeClass('item-selected');
                         $('.menu-trigger-model').attr('data-sku',sku)
                         selLabel.html($tar.html());
-                        $('#menu-trigger-model').trigger('close').attr('data-sku',sku).find('span').html(res.productMap.style);
+                        $('#menu-trigger-model').trigger('close').attr('data-sku',sku).find('span').html(phoneModel);
 
                         attrPanelView.render(res);
 
+                    });
+                }).fail(function(err){
+                    (new AlertView()).render({
+                        'msg': '网络不稳定，休息一下，稍后试试~'
                     });
                 });
             }
 
             function handleSort(e){
+                var $target = $(e.currentTarget);
+                if($target.hasClass('sorting-current')){
+                    return false;
+                }
+
                 if (spinner) {
                     spinner.start();
                 }
-                var $target = $(e.currentTarget),
-                    that = this,
+                var that = this,
                     columeValue = $target.attr('data-column'),
                     data = $.extend(goodsListView.reqData, {
                         column: columeValue,
@@ -220,6 +241,13 @@ define([
                     rendGoodsList(res.resultQuery);
                     $target.addClass('sorting-current').siblings().removeClass('sorting-current');
                     //handleDefer();
+                }).fail(function(err){
+                    if (spinner) {
+                        spinner.stop();
+                    }
+                    (new AlertView()).render({
+                        'msg': '网络不稳定，休息一下，稍后试试~'
+                    });
                 });
 
                 switch (columeValue){
@@ -263,18 +291,24 @@ define([
                 goodsListView.fill = '';
                 $('.attr-first-li').each(function (i, ele) {
                     var $ele = $(ele),
+                        attrName = $ele.attr('data-attr-name'),
                         attrId = $ele.attr('data-attr-id'),
                         optionId = $ele.attr('data-option-id'),
-                        optionName = $.trim($ele.attr('data-option-name'));
+                        optionName;
                     if (optionId) {
-                        if (attrId != 954) { //价格除外
+                        if (attrName != '价格') { //价格除外
                             var condiStr = attrId + ':' + optionId;
                             condition.push(condiStr);
                         } else {
-                            priceCondition = optionName
+                            optionName = $.trim($ele.attr('data-option-name'));
+                            if (optionName.indexOf('以上') != -1){
+                                optionName = optionName.replace('以上','max');
+                            }
+                            priceCondition = optionName;
                         }
                     }
                 });
+
                 condition = condition.join(';');
 
                 $.extend(data, {
@@ -291,6 +325,11 @@ define([
                     } else {
                         $('#J_AttrTrigger').removeClass('cur');
                     }
+                }).fail(function(err){
+                    $('#J_AttrPane').trigger('close');
+                    (new AlertView()).render({
+                        'msg': '网络不稳定，休息一下，稍后试试~'
+                    });
                 });
 
                 ping.click({
@@ -341,8 +380,10 @@ define([
                             'msg': ret.msg
                         });
                     }
-                }).fail(function(error) {
-                    alert('网络不稳定，休息一下，稍后试试~');
+                }).fail(function(err){
+                    (new AlertView()).render({
+                        'msg': '网络不稳定，休息一下，稍后试试~'
+                    });
                 });
 
             }
@@ -383,7 +424,7 @@ define([
             function handleScroll(e, force) {
                 //if scroll hasn't changed, do nothing;
                 if (!force && lastScrollY == window.scrollY) {
-                    window.setTimeout(handleScroll, 100);
+                    Tid = window.setTimeout(handleScroll, 100);
 
                     return;
                 } else {
@@ -402,10 +443,10 @@ define([
                 }
 
                 handleDefer();
-                window.setTimeout(handleScroll, 100);
+                Tid = window.setTimeout(handleScroll, 100);
             }
 
-            window.setTimeout(handleScroll, 100);
+            Tid = window.setTimeout(handleScroll, 100);
 
             function goIndex(sku) {
 

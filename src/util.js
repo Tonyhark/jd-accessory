@@ -81,6 +81,22 @@ define(function() {
   				}
  			}
  			return str+postfix;
-		}
+		},
+        formatSales: function(sales){
+            // 1 10 100 1000 1万 10万 n万
+            var len = (parseInt(sales)+'') .length,
+                salesText;
+
+            if(len<5){
+                var den = Math.pow(10, len-1);
+                salesText = parseInt(sales/den)*den
+            }else{
+                var den = Math.pow(10, len-1);
+                salesText = parseInt(sales/den)*den/10000 + '万';
+            }
+
+            return salesText;
+        }
+
 	}
 });

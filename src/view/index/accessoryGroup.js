@@ -16,9 +16,13 @@ define([
         },
         handleSelectAcc: function(e){
             e.preventDefault();
+
             var $tar = $(e.currentTarget),
                 thirdTypeId = $tar.attr('data-acc-id'),
                 sku = $('#menu-trigger-model').attr('data-sku');
+            if($tar.hasClass('cur')){
+                return false
+            }
             ping.click({
                 "report_eventid":"Accessory_Category",
                 "report_eventparam": thirdTypeId
@@ -28,9 +32,14 @@ define([
         },
         goUrl: function(sku,thirdTypeId){
 
-            var baseUrl = location.href;
-            baseUrl = baseUrl.substring(0,baseUrl.indexOf('?')) ;
+            var baseUrl = location.href,
+                endIndex = baseUrl.indexOf('?');
+
+            baseUrl = endIndex== -1? baseUrl.substring(0) :baseUrl.substring(0,endIndex);
+
+
             if(thirdTypeId){
+
                 baseUrl = baseUrl.replace('index.html','detail.html');
                 baseUrl += '?sku='+ sku + '&thirdTypeId='+ thirdTypeId;
             }else{

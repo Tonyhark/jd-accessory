@@ -13,19 +13,18 @@ define([
 ], function ($, store, Model, View, cTpl, alertView,util) {
     return {
         init: function (data) {
-            var dtd = $.util.Deferred();
-
-            var model = new Model(),
+            var dtd = $.util.Deferred(),
+                model = new Model(),
                 accGrouptView = new View({
                     model: model,
                     el: '#J_AccGroup',
                     tpl:  {
                         accGroup: cTpl
                     }
-                });
+                }),
+                that = this;
 
             var mapObj = function(obj){
-                console.log(obj);
                 var resultObj = {};
                 resultObj.accessoryList = [];
 
@@ -43,7 +42,6 @@ define([
                             v.accessoryList[index].price = util.formatPrice(acc.price);
                         });
 
-
                         resultObj.accessoryList.push(v);
                     }
                 });
@@ -54,7 +52,7 @@ define([
             var renderAccGroup = function(data){
                 model.accessoryGroup(data).done(function (res) {
 
-                    if (typeof res == 'object') {
+                    if (res.accessoryList) {
 
                         var accData = mapObj(res);
                         accGrouptView.render(accData);
@@ -62,15 +60,13 @@ define([
                         return dtd.resolve(res);
                     } else {
 
-                        var alert = new alertView();
-                        alert.render({
-                            'msg': res.msg
-                        });
-
                         return dtd.reject(res);
                     }
                 }).fail(function (error) {
-                    alert('网络不稳定，休息一下，稍后试试~');
+
+                    (new alertView()).render({
+                        'msg': '网络不稳定，休息一下，稍后试试~'
+                    });
                     if (spinner) {
                         spinner.stop();
                     }
@@ -89,24 +85,13 @@ define([
                     spinner.start();
                 }
                 var $tar = $(this),
-                    $li = $tar.parents('.item-brand'),
-                    selLabel = $li.find('.select-sub'),
                     sku = $tar.attr('data-sku'),
-                    model = $tar.html();
-                var data = {};
-
+                    data = {};
                 data.sku = sku;
+
                 renderAccGroup(data).done(function(res){
-                    $tar.addClass('cur');
-                    $li.removeClass('cur').addClass('item-selected').attr('data-sku',sku).siblings().attr('data-sku','').removeClass('item-selected');
-                    $('.menu-trigger').attr('data-sku',sku)
-                    selLabel.html($tar.html());
-
-                    $('#menu-trigger-model').trigger('close').find('span').html(model);
-
+                    that.setPhoneMenuCur($tar,sku);
                 });
-
-
             });
 
             $(document).on('click','.pd-more-link',function(e){
@@ -124,6 +109,20 @@ define([
             });
 
             return dtd.promise();
+
+        },
+        setPhoneMenuCur: function($tar,sku){
+            var $li = $tar.parents('.item-brand'),
+                selLabel = $li.find('.select-sub'),
+                sku = $tar.attr('data-sku'),
+                model = $tar.html();
+
+            $tar.addClass('cur');
+            $li.removeClass('cur').addClass('item-selected').attr('data-sku',sku).siblings().attr('data-sku','').removeClass('item-selected');
+            $('.menu-trigger').attr('data-sku',sku);
+            selLabel.html($tar.html());
+
+            $('#menu-trigger-model').trigger('close').find('span').html(model);
 
         }
     }
