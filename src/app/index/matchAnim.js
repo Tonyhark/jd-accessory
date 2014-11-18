@@ -14,7 +14,7 @@ define(['common'],function($){
         },
         stop: function(modelName){
             var that = this;
-            var delay =  1000;
+            var delay =  1500;
             var txt;
             $('.content').show();
             txt = modelName ?  modelName : '没有检测到您的机型呢';

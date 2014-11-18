@@ -40,7 +40,7 @@ define([
 
             if(thirdTypeId){
 
-                baseUrl = baseUrl.replace('index.html','detail.html');
+                baseUrl = baseUrl.replace('pjzx.html','detail.html');
                 baseUrl += '?sku='+ sku + '&thirdTypeId='+ thirdTypeId;
             }else{
                 baseUrl += '?sku='+ sku;

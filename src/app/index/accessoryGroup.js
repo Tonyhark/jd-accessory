@@ -88,7 +88,7 @@ define([
                     sku = $tar.attr('data-sku'),
                     data = {};
                 data.sku = sku;
-
+                $tar.addClass('cur').siblings().removeClass('cur');
                 renderAccGroup(data).done(function(res){
                     that.setPhoneMenuCur($tar,sku);
                 });

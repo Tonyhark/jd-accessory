@@ -24,7 +24,9 @@ define([
                 return;
             }
             $('.overlay').show();
+            //$('.filter').show();
             $('.filter').addClass('active');
+
         },
         showAttrSecond: function(e){
             var $tar = $(e.currentTarget);

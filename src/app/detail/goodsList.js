@@ -453,7 +453,7 @@ define([
                 var baseUrl = location.href;
                 baseUrl = baseUrl.substring(0, baseUrl.indexOf('?'));
                 if (sku) {
-                    baseUrl = baseUrl.replace('detail', 'index');
+                    baseUrl = baseUrl.replace('detail', 'pjzx');
                     baseUrl += '?sku=' + sku;
                 }
 

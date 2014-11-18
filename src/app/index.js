@@ -5,15 +5,18 @@ define([
     'app/index/accessoryGroup',
     'app/index/matchAnim',
     'util',
-    'view/widget/alert'
-], function (skuNumber, defaultList, toolBar, accessoryGroup, matchAnim, util,AlertView) {
+    'view/widget/alert',
+    'common/store'
+], function (skuNumber, defaultList, toolBar, accessoryGroup, matchAnim, util,AlertView, Store) {
 
     FastClick.attach(document.body);
     var phoneData = {};
     var SKU;
-    var modelData = {}
+    var skuCacheKey = 'skuCache';
+    var modelData = {};
+    //没有传递sku参数，判断是否有sku缓存，避免重新触发检测动画效果
+    //var paramSku = $.url.getParam('sku') || Store.get(skuCacheKey);
     var paramSku = $.url.getParam('sku') || undefined;
-
 
     matchAnim.init();//device-anim
 
@@ -21,7 +24,7 @@ define([
 
     function accGroupOrDefault() {
         if (paramSku) {
-            //http://localhost:3000/src/html/index.html?sku=944597
+            //http://localhost:3000/src/html/pjzx.html?sku=944597
             SKU = paramSku;
             //通过sku拉取多配件数据  从这里进来就不需要检测效果
             initAccGroup(SKU);
@@ -31,10 +34,9 @@ define([
             if ($.url.getParam('d_brand') && $.url.getParam('d_model')) {
                 if (spinner) {
                     spinner.stop();
-
                 }
                 matchAnim.start();//开始loading动画
-                //http://localhost:3000/src/html/index.html?mobiletype=1&client=android&d_brand=YuLong&d_model=Coolpad8750
+                //http://localhost:3000/src/html/pjzx.html?mobiletype=1&client=android&d_brand=YuLong&d_model=Coolpad8750
 
                 phoneData.functionid = 'accessoryType';
                 phoneData.client = $.url.getParam('client');
@@ -45,19 +47,22 @@ define([
                 skuNumber.init(phoneData).done(function (res) {
 
                     if (res.skuId) {
-                        matchAnim.stop(phoneData.d_model); //匹配完毕动画结束
                         SKU = res.skuId;
+                        Store.set(skuCacheKey,SKU);
+                        matchAnim.stop(phoneData.d_model); //匹配完毕动画结束
                         initAccGroup(SKU);
+
                     } else {
                         matchAnim.stop(); //匹配完毕动画结束
                         //显示默认类目
-
                         defaultList.init().done(function (res) {
                             toolBar.init().done(function (res) {
-
                             });
                         }).fail(function (error) {
-                            alert('默认类目拉取失败');
+                            alert('');
+                            (new AlertView()).render({
+                                'msg': '程序员开小差了，稍后试试~'
+                            });
                         });
                     }
                 }).fail(function (error) {

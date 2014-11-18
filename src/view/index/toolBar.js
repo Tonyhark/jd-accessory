@@ -68,7 +68,7 @@ define([
 
                     $.each(res.styleByBrandName, function (i, v) {
                         $('<a/>').html(v.style).attr({
-                            'href': 'index.html?sku=' + v.sku,
+                            'href': 'pjzx.html?sku=' + v.sku,
                             'data-sku': v.sku,
                             'class': 'tag-model'
                         }).appendTo($temp);
