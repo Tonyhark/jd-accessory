@@ -89,10 +89,12 @@ define(function() {
 
             if(len<5){
                 var den = Math.pow(10, len-1);
-                salesText = parseInt(sales/den)*den
+                salesText = parseInt(sales/den)*den;
+                salesText = len > 1 ? salesText+ '+' : salesText
+
             }else{
                 var den = Math.pow(10, len-1);
-                salesText = parseInt(sales/den)*den/10000 + '万';
+                salesText = parseInt(sales/den)*den/10000 + '万' + '+';
             }
 
             return salesText;

@@ -15,8 +15,9 @@ define([
     var skuCacheKey = 'skuCache';
     var modelData = {};
     //没有传递sku参数，判断是否有sku缓存，避免重新触发检测动画效果
-    //var paramSku = $.url.getParam('sku') || Store.get(skuCacheKey);
-    var paramSku = $.url.getParam('sku') || undefined;
+    //alert(Store.get(skuCacheKey));
+    var paramSku = $.url.getParam('sku') || Store.get(skuCacheKey);
+    //var paramSku = $.url.getParam('sku') || undefined;
 
     matchAnim.init();//device-anim
 
@@ -55,15 +56,7 @@ define([
                     } else {
                         matchAnim.stop(); //匹配完毕动画结束
                         //显示默认类目
-                        defaultList.init().done(function (res) {
-                            toolBar.init().done(function (res) {
-                            });
-                        }).fail(function (error) {
-                            alert('');
-                            (new AlertView()).render({
-                                'msg': '程序员开小差了，稍后试试~'
-                            });
-                        });
+                        initDefault();
                     }
                 }).fail(function (error) {
                     matchAnim.stop();
@@ -75,15 +68,7 @@ define([
 
                 matchAnim.stop(); //匹配完毕动画结束
                 //显示默认类目
-                defaultList.init().done(function (res) {
-                    toolBar.init().done(function (res) {
-
-                    });
-                }).fail(function (error) {
-                    (new AlertView()).render({
-                        'msg': '网络不稳定，休息一下，稍后试试~'
-                    });
-                });
+                initDefault();
 
                 return;
             }
@@ -96,32 +81,36 @@ define([
 
         accessoryGroup.init(data).done(function (res) {
 
+            if(!res.mainproduct){
+                (new AlertView()).render({
+                    msg: '程序员太累了，去呼噜了，请稍后再试~'
+                });
+                return
+            }
             modelData.style = res.mainproduct.style? res.mainproduct.style: res.mainproduct.name;
             modelData.brand = res.mainproduct.brand;
             modelData.sku = res.mainproduct.sku;
 
             toolBar.init(modelData);
         }).fail(function (err) {   //当前sku无法取回数据，则显示默认页面
-            defaultList.init().done(function (res) {
-                toolBar.init().done(function (res) {
-
-                });
-            }).fail(function (error) {
-                (new AlertView()).render({
-                    msg: '程序员太累了，去呼噜了，请稍后再试~'
-                })
-
-            });
+            initDefault();
         });
 
+    }
+
+    function initDefault(){
+        defaultList.init().done(function (res) {
+            toolBar.init().done(function (res) {});
+        }).fail(function (error) {
+            (new AlertView()).render({
+                'msg': '网络不稳定，休息一下，稍后试试~'
+            });
+        });
     }
 
     routie({
         "": function () {
             document.title = '配件中心';
-            //初始化品牌列表
         }
     })
-
-
 });

@@ -110,7 +110,6 @@ define([
                 });
             });
 
-
             function rendGoodsList(data){
 
                 $.each(data.list,function(i,v){
@@ -149,11 +148,12 @@ define([
                 if (spinner) {
                     spinner.start();
                 }
+                $('.menu-item-acc').filter('.cur').removeClass('cur');
+                $tar.addClass('cur');
                 goodsListView.model.goodsList(data).done(function (res) {
                     rendGoodsList(res.resultQuery);
                     goodsListView.model.attrPanel(attrReqData).done(function(res){
-                        $('.menu-item-acc').filter('.cur').removeClass('cur');
-                        $tar.addClass('cur');
+
                         $('#menu-trigger-acc').attr('data-acc',res.thirdTypeId);
                         $('#menu-trigger-acc').trigger('close').find('span').html(res.thirdTypeName);
 
@@ -185,6 +185,7 @@ define([
                 if($tar.hasClass('cur')){
                     return false;
                 }
+                $tar.addClass('cur').siblings('.cur').removeClass('cur');
                 data = $.extend(goodsListView.reqData,{
                     sku:sku,
                     pageNo: 1,
@@ -208,7 +209,7 @@ define([
                         $('.menu-trigger-model').attr('data-sku',sku)
                         selLabel.html($tar.html());
                         $('#menu-trigger-model').trigger('close').attr('data-sku',sku).find('span').html(phoneModel);
-
+                        $(window).scrollTop(0);
                         attrPanelView.render(res);
 
                     });

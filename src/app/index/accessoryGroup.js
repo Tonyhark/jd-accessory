@@ -56,7 +56,7 @@ define([
 
                         var accData = mapObj(res);
                         accGrouptView.render(accData);
-
+                        $(window).scrollTop(0);
                         return dtd.resolve(res);
                     } else {
 

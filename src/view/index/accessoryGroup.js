@@ -27,7 +27,7 @@ define([
                 "report_eventid":"Accessory_Category",
                 "report_eventparam": thirdTypeId
             });
-
+            $tar.addClass('cur').siblings('cur').removeClass('cur');
             this.goUrl(sku,thirdTypeId);
         },
         goUrl: function(sku,thirdTypeId){

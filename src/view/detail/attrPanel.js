@@ -24,7 +24,7 @@ define([
                 return;
             }
             $('.overlay').show();
-            //$('.filter').show();
+            //$('.filter-outter').show();
             $('.filter').addClass('active');
 
         },
@@ -36,7 +36,11 @@ define([
         },
         closeAttr: function(){
             $('.overlay').hide();
+
             $('.filter,.filter-sub').removeClass('active');
+//            setTimeout(function(){
+//                $('.filter-outter').hide();
+//            },600);
             $('.attr-second').removeClass('cur')
         },
         closeSubAttr: function(li){
@@ -57,8 +61,6 @@ define([
                 .text(obj['data-option-name']);
 
             this.closeSubAttr($tar);
-
-
         }
 
 

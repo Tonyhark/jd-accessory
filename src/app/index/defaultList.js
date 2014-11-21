@@ -9,7 +9,7 @@ define([
     'text!tpl/index/defaultList.mustache',
     'view/widget/alert',
     'app/index/accessoryGroup'
-], function ($, store, Model, View, cTpl, alertView,initAccGroup) {
+], function ($, store, Model, View, cTpl, alertView, initAccGroup) {
     return {
         init: function (data) {
 
@@ -19,11 +19,11 @@ define([
                 defaultListView = new View({
                     model: model,
                     el: '#J_DefaultList',
-                    tpl:  {
+                    tpl: {
                         defaultList: cTpl
                     }
                 });
-            defaultListView.afterRender = function(data){
+            defaultListView.afterRender = function (data) {
                 $('#J_DefaultList').show();
                 clearTimeout(Tid);
                 handleScroll(null, true);
@@ -43,28 +43,34 @@ define([
                 scrollY = window.pageYOffset,
                 innerHeight,
                 topViewPort,
-                bottomViewPort;
-
-            var reqData = {
-                functionid:'searchCatelogy',
-                //手机饰品 11302
-                body: {
-                    pagesize: '20',
-                    page: '1',
-                    catelogyId:'868',
-                    isLoadPromotion:true,
-                    isLoadAverageScore: true
+                bottomViewPort,
+                reqData = {
+                    functionid: 'searchCatelogy',
+                    //手机饰品 11302
+                    body: {
+                        pagesize: '20',
+                        page: '1',
+                        catelogyId: '868',
+                        isLoadPromotion: true,
+                        isLoadAverageScore: true
+                    }
+                },
+                parseData = function(data){
+                    $.each(data.wareInfo,function(index,value){
+                        data.wareInfo[index].imageurl = value.imageurl.replace('/n4/','/n2/');
+                    });
+                    return data;
                 }
-            };
 
             //'{"pagesize":"20","page":"1","catelogyId":"868","isLoadPromotion":true,"isLoadAverageScore":true}'
 
-            model.defaultList(stringifyBody(page,nowCateId)).done(function(res){
+            model.defaultList(stringifyBody(page, nowCateId)).done(function (res) {
                 //console.log(res);
 
-                if(res.code==0){
-                    defaultListView.render(res)
-                }else{
+                if (res.code == 0) {
+                    var parsedData = parseData(res);
+                    defaultListView.render(parsedData)
+                } else {
                     var alert = new alertView();
                     alert.render({
                         'msg': res.errmsg
@@ -72,13 +78,13 @@ define([
                 }
 
                 return dtd.resolve(res);
-            }).fail(function(error){
+            }).fail(function (error) {
                 alert('网络不稳定，休息一下，稍后试试~');
 
                 return dtd.reject();
             });
 
-            $(document).on('click.g','.tag-model',function(e){
+            $(document).on('click.g', '.tag-model', function (e) {
                 e.preventDefault();
                 if (spinner) {
                     spinner.start();
@@ -86,21 +92,21 @@ define([
                 var $tar = $(this),
                     sku = $tar.attr('data-sku'),
                     data = {},
-                    phoneData ={};
+                    phoneData = {};
                 data.sku = $tar.attr('data-sku');
                 //关闭原有的timeout 和事件
 
 
                 //初始化accGroup
-                initAccGroup.init(data).done(function(res){
+                initAccGroup.init(data).done(function (res) {
 
                     clearTimeout(Tid);
-                    $(document).off('click.g','.tag-model')
-                    initAccGroup.setPhoneMenuCur($tar,sku);
+                    $(document).off('click.g', '.tag-model')
+                    initAccGroup.setPhoneMenuCur($tar, sku);
                     $('#menu-trigger-acc').show();
                     $('#J_DefaultList').remove();
 
-                }).fail(function(error){
+                }).fail(function (error) {
                     $('#menu-trigger-model').trigger('close');
 
                     (new alertView()).render({
@@ -110,13 +116,12 @@ define([
             });
 
 
+            function stringifyBody(page, catelogyId) {
 
-            function stringifyBody(page,catelogyId) {
+                var cataeId = catelogyId ? catelogyId : cateOneId;
 
-                var cataeId = catelogyId? catelogyId : cateOneId;
-
-                var body = '{"pagesize":"20","page":"'+page+'","catelogyId":"'+cataeId+'","isLoadPromotion":true,"isLoadAverageScore":true}';
-                reqData.body =body;
+                var body = '{"pagesize":"20","page":"' + page + '","catelogyId":"' + cataeId + '","isLoadPromotion":true,"isLoadAverageScore":true}';
+                reqData.body = body;
                 //console.log({'默认配件请求数据':reqData})
                 return reqData;
             }
@@ -130,7 +135,7 @@ define([
                     topViewPort = scrollTop,
                     bottomViewPort = scrollTop + innerHeight;
 
-                if(offTop + offsetHeight > topViewPort && offTop < bottomViewPort) {
+                if (offTop + offsetHeight > topViewPort && offTop < bottomViewPort) {
 
                     return true;
                 } else {
@@ -138,30 +143,30 @@ define([
                 }
             }
 
-            function fetchDefaultList(){
+            function fetchDefaultList() {
                 if (fetching) {
                     return;
                 } else {
                     fetching = true;
                 }
 
-                page+=1;
+                page += 1;
                 defaultListView.fill = 'after';
 
-                model.defaultList(stringifyBody(page,nowCateId)).done(function(res) {
+                model.defaultList(stringifyBody(page, nowCateId)).done(function (res) {
 
-                    if(res.code == 0){
+                    if (res.code == 0) {
                         defaultListView.render(res);
 
                         fetching = false;
-                    }else {
+                    } else {
                         var alert = new alertView();
                         alert.render({
                             'msg': res.msg
                         });
                     }
 
-                }).fail(function(error) {
+                }).fail(function (error) {
                     alert('网络不稳定，休息一下，稍后试试~');
                 });
 
@@ -172,13 +177,13 @@ define([
 
                 var $list = $('.pd-item-li[data-lazy="true"]');
 
-                $list.each(function(i,ele){
+                $list.each(function (i, ele) {
 
                     if (isVisible(ele)) {
 
                         var thisImg = $(ele).find('img')[0];
                         var imgSrc = thisImg.getAttribute('data-src');
-                        $(ele).attr('data-lazy','false');
+                        $(ele).attr('data-lazy', 'false');
 
                         //create a closure for for simple preload stuff
                         var handler = function () {
@@ -220,19 +225,19 @@ define([
                 bottomViewPort = scrollY + innerHeight + 1000;
 
                 if (window.scrollY + innerHeight + 800 > document.body.offsetHeight) {
-                    switch (nowCateId){
+                    switch (nowCateId) {
                         case  cateOneId:
-                            if(page < pageTotal){
+                            if (page < pageTotal) {
                                 fetchDefaultList();
-                            }else{
+                            } else {
                                 page = 0; //下次拉取会+1
                                 nowCateId = cateTwoId;
                             }
                             break;
                         case cateTwoId:
-                            if(page < pageTotal){
+                            if (page < pageTotal) {
                                 fetchDefaultList();
-                            }else{
+                            } else {
                                 //没有更多了
                             }
                             break;
@@ -242,15 +247,15 @@ define([
                 }
 
                 handleDefer();
-                Tid =window.setTimeout(handleScroll, 120);
+                Tid = window.setTimeout(handleScroll, 120);
             }
 
             //Tid = window.setTimeout(handleScroll, 120); 写在afterRender里
 
-            $(document).on('click','.pd-item',function(e){
+            $(document).on('click', '.pd-item', function (e) {
                 var sku = $(this).attr('data-sku');
                 ping.click({
-                    "report_eventid":"Accessory_Productid",
+                    "report_eventid": "Accessory_Productid",
                     "report_eventparam": sku
                 });
             });

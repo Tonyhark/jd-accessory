@@ -13,6 +13,7 @@ define([
             'close .menu-trigger': 'closeBrandList'
         },
         handleMenu: function (e) {
+            e.preventDefault();
 
             var $tar = $(e.currentTarget),
                 listId = $tar.attr('rel'),
@@ -44,6 +45,7 @@ define([
                     "report_eventid": "Accessory_BrandFilter"
                 });
             }
+
 
         },
         getModelList: function (e) {
