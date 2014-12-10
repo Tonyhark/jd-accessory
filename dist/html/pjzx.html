@@ -3,8 +3,8 @@
 <head lang="en">
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-    <title></title>
-    <link rel="stylesheet" href="../css/style.css?v=1416477859000"/>
+    <title>配件中心</title>
+    <link rel="stylesheet" href="../css/style.css?v=1418201881000"/>
     <style type="text/css">
         .dN{
             display: none;}
@@ -25,6 +25,7 @@
     <div class="content">
         <!-- S topbar -->
         <div id="J_Menu" class="topbar">
+            <div class="menu-overlay"></div>
             <div class="menu">
                 <ul>
                     <textarea class="J_template">
@@ -35,9 +36,7 @@
                     </textarea>
                 </ul>
             </div>
-
             <!-- S menu-pop 配件/设备选择弹框 -->
-
             <div class="menu-pop">
                 <i class="icon-arrow"></i>
                 <!-- 配件弹框 -->
@@ -83,9 +82,15 @@
                             {{> defaultList}}
                         </textarea>
                     </ul>
+                    <div class="pd-list-loading">
+                        <p class="list-loading"><span></span></p>
+                        <p class="list-nomore"><span>已到尾页</span></p>
+                    </div>
                 </div>
             </div>
         </div>
+
+
     </div>
     <!-- E 内容 -->
     <div class="overlay dN"></div>
@@ -105,7 +110,10 @@
 <div id="J_view_message"></div>
 
 <script src="http://h5.m.jd.com/active/common/ping.min.js"></script>
-<script type="text/javascript" src="../app/index.min.js?v=1416477859000"></script>
+
+
+
+<script type="text/javascript" src="../app/index.min.js?v=1418201881000"></script>
 
 <script>
     require(['app/index']);

@@ -23,8 +23,7 @@ define(function() {
 		}
 		re.rule = {
 			pic:{
-                url:'http://img30.360buyimg.com/n3/',
-                accLink: ''
+                url:'http://img10.360buyimg.com/mobilecms/s290x290_'
             }
 		};
 		return re;

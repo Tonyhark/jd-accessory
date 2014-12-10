@@ -7,10 +7,15 @@ define([
 ], function ($, BaseView) {
     var View = $.util.inherit(BaseView);
     $.extend(View.prototype, {
+        $map: {
+            $mask: this.$('.menu-overlay'),
+            $dropDown: this.$('.menu-pop')
+        },
         events: {
             'click .menu-trigger': 'handleMenu',
             'click .item-brand-trigger': 'getModelList',
-            'close .menu-trigger': 'closeBrandList'
+            'close .menu-trigger': 'closeBrandList',
+            'click .menu-overlay': 'closeBrandList'
         },
         handleMenu: function (e) {
             e.preventDefault();
@@ -18,14 +23,18 @@ define([
             var $tar = $(e.currentTarget),
                 listId = $tar.attr('rel'),
                 curMenuList = $('#' + listId),
-                $menuWrap = $('.menu-pop');
+                $menuWrap = this.$map.$dropDown,
+                $mask = this.$map.$mask;
 
             if ($tar.hasClass('cur')) {
                 $tar.removeClass('cur');
                 $menuWrap.hide();
                 curMenuList.hide();
+                $mask.hide();
             } else {
                 $menuWrap.show();
+
+                $mask.show();
                 $tar.addClass('cur').siblings().removeClass('cur');
                 curMenuList.show().siblings('.menu-list').hide();
                 //arrow
@@ -45,8 +54,6 @@ define([
                     "report_eventid": "Accessory_BrandFilter"
                 });
             }
-
-
         },
         getModelList: function (e) {
 
@@ -91,8 +98,10 @@ define([
         },
         closeBrandList: function () {
             //$('.menu-list').hide();
-            $('.menu-trigger').removeClass('cur');
-            $('.menu-pop').hide();
+            this.$map.$mask.hide();
+            this.$map.$dropDown.hide();
+            this.$('.menu-trigger').removeClass('cur');
+
         },
         afterRender: function (data) {
             //判断是否需要显示配件菜单

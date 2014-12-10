@@ -108,6 +108,8 @@ define([
                     "report_eventid":"Accessory_Productid",
                     "report_eventparam": sku
                 });
+                util.goDetail(sku);
+
             });
 
             function rendGoodsList(data){
@@ -251,7 +253,7 @@ define([
                     });
                 });
 
-                switch (columeValue){
+                switch (columeValue*1){
                     case 0:
                         ping.click({
                             "report_eventid":"AccessoryDetail_SortbyAmount"
@@ -350,7 +352,6 @@ define([
                     bottomViewPort = scrollTop + innerHeight;
 
                 if(offTop + offsetHeight > topViewPort && offTop < bottomViewPort) {
-
                     return true;
                 } else {
                     return false;
@@ -409,7 +410,8 @@ define([
 
                             return function () {
                                 node.src = src;
-                                node.style.opacity = 1;
+
+                                //node.style.opacity = 1;
                                 //loaded[deferSrc] = true;
                             }
                         }();

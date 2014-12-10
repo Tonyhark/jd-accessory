@@ -3,7 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-    <title>配件单品</title>
+    <title>配件中心</title>
     <link rel="stylesheet" href="../css/style.css?v=@@version"/>
     <style type="text/css">
         .dN {
@@ -21,6 +21,7 @@
 
 </head>
 <body>
+
 <script type="text/javascript" src="../js/spin.min.js"></script>
 
 <!-- S 主内容 -->
@@ -29,6 +30,7 @@
     <div id="search-cntr" class="content">
         <!-- S topbar -->
         <div id="J_Menu" class="topbar">
+            <div class="menu-overlay"></div>
             <div class="menu">
                 <ul>
                     <textarea class="J_template">
@@ -68,7 +70,6 @@
                         </li>
                         {{/initBrandName}}
                     </textarea>
-
                 </ul>
             </div>
             <!-- E menu-pop 配件/设备选择弹框 -->
@@ -81,7 +82,6 @@
                     <li class="sroting-btn" data-column="3"><span class="sort-item">新品</span><em class="line"></em></li>
                 </ul>
             </div>
-
         </div>
         <!-- E topbar -->
 
@@ -125,10 +125,6 @@
             ping.init();
         }, 500);
     }
-</script>
-<script>
-  //  location = location + "&abcd=123";
-    console.log(window.history);
 </script>
 </body>
 </html>

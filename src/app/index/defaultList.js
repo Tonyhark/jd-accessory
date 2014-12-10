@@ -8,13 +8,17 @@ define([
     'view/index/defaultList',
     'text!tpl/index/defaultList.mustache',
     'view/widget/alert',
-    'app/index/accessoryGroup'
-], function ($, store, Model, View, cTpl, alertView, initAccGroup) {
+    'app/index/accessoryGroup',
+    'config/url',
+    'util'
+], function ($, store, Model, View, cTpl, alertView, initAccGroup,configUrl,util) {
     return {
         init: function (data) {
 
             var dtd = $.util.Deferred();
-
+            var imgUrlFirstPart = configUrl.rule.pic.url;
+            var $loadingMore = $('.list-loading');
+            var $loadingEnd = $('.list-nomore');
             var model = new Model(),
                 defaultListView = new View({
                     model: model,
@@ -57,7 +61,14 @@ define([
                 },
                 parseData = function(data){
                     $.each(data.wareInfo,function(index,value){
-                        data.wareInfo[index].imageurl = value.imageurl.replace('/n4/','/n2/');
+                        var url = value.imageurl,
+                            frag = '/n4/',
+                            beginIndex = url.indexOf(frag) + frag.length;
+
+                        data.wareInfo[index].imageurl = imgUrlFirstPart + url.substring(beginIndex);
+
+
+
                     });
                     return data;
                 }
@@ -156,7 +167,10 @@ define([
                 model.defaultList(stringifyBody(page, nowCateId)).done(function (res) {
 
                     if (res.code == 0) {
-                        defaultListView.render(res);
+
+                        $loadingMore.hide();
+                        var parsedData = parseData(res);
+                        defaultListView.render(parsedData);
 
                         fetching = false;
                     } else {
@@ -193,15 +207,14 @@ define([
 
                             return function () {
                                 node.src = src;
-                                node.style.opacity = 1;
+                                //node.style.opacity = 1; 魅族mx3 在有半透明层的时候会渲染闪动
                                 //loaded[deferSrc] = true;
                             }
                         }();
-
                         var img = new Image();
                         img.onload = handler;
+                        img.onerror = handler;
                         img.src = imgSrc;
-
                     }
                 });
 
@@ -212,7 +225,7 @@ define([
 
                 if (!force && lastScrollY == window.scrollY) {
 
-                    Tid = window.setTimeout(handleScroll, 120);
+                    Tid = window.setTimeout(handleScroll, 100);
                     return;
                 } else {
 
@@ -224,10 +237,11 @@ define([
                 topViewPort = scrollY - 1000;
                 bottomViewPort = scrollY + innerHeight + 1000;
 
-                if (window.scrollY + innerHeight + 800 > document.body.offsetHeight) {
+                if (window.scrollY + innerHeight + 1500 > document.body.offsetHeight) {
                     switch (nowCateId) {
                         case  cateOneId:
                             if (page < pageTotal) {
+                                $loadingMore.show();
                                 fetchDefaultList();
                             } else {
                                 page = 0; //下次拉取会+1
@@ -236,9 +250,11 @@ define([
                             break;
                         case cateTwoId:
                             if (page < pageTotal) {
+                                $loadingMore.show();
                                 fetchDefaultList();
                             } else {
-                                //没有更多了
+                                $loadingMore.hide();
+                                $loadingEnd.show();
                             }
                             break;
                         default:
@@ -247,7 +263,7 @@ define([
                 }
 
                 handleDefer();
-                Tid = window.setTimeout(handleScroll, 120);
+                Tid = window.setTimeout(handleScroll, 100);
             }
 
             //Tid = window.setTimeout(handleScroll, 120); 写在afterRender里
@@ -258,6 +274,7 @@ define([
                     "report_eventid": "Accessory_Productid",
                     "report_eventparam": sku
                 });
+                util.goDetail(sku);
             });
 
             return dtd.promise();

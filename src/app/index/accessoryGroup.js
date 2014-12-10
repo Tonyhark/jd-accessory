@@ -106,6 +106,7 @@ define([
                     "report_eventid":"Accessory_Productid",
                     "report_eventparam": sku
                 });
+                util.goDetail(sku);
             });
 
             return dtd.promise();
@@ -123,7 +124,6 @@ define([
             selLabel.html($tar.html());
 
             $('#menu-trigger-model').trigger('close').find('span').html(model);
-
         }
     }
 });

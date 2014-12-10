@@ -98,6 +98,18 @@ define(function() {
             }
 
             return salesText;
+        },
+        goDetail: function(sku){
+
+            var appurl = "openApp.jdMobile://virtual?params={\"category\":\"jump\",\"des\":\"productDetail\",\"skuId\":\"" + sku + "\",\"sourceType\":\"pjzx\",\"sourceValue\":\"peijian\"}";
+            var murl = "http://m.jd.com/product/" + sku + ".html?v=t";
+            var g_sUA = navigator.userAgent.toLowerCase();
+            var jdApp = g_sUA.indexOf('jdapp');
+            if (jdApp != -1) {
+                location.href = appurl;
+            } else {
+                location.href = murl;
+            }
         }
 
 	}
