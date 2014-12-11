@@ -5,9 +5,11 @@
 *.out
 *.pid
 *.zip
-
+.idea/
+.idea/* 
 .idea/workspace.xml 
 dist/  
+dist/*
 node_modules/
 *.txt
 abc/
