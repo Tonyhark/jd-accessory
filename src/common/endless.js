@@ -81,7 +81,6 @@ define('common/endless',['zepto'],function($){
             if (window.scrollY + innerHeight + 800 > document.body.offsetHeight) {
 
                 //加载更多函数
-                alert(1);
 
             }
 
