@@ -78,6 +78,7 @@ define('common/endless',['zepto'],function($){
             bottomViewPort = scrollY + innerHeight + 200;
 
             // 需要判断是否需要加载更多
+            
             if (window.scrollY + innerHeight + 800 > document.body.offsetHeight) {
 
                 //加载更多函数
