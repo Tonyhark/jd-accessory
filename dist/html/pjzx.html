@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <title>配件中心</title>
+    <link rel="stylesheet" href="../css/style.css?v=1418270057000"/>
+    <style type="text/css">
+        .dN{
+            display: none;}
+        .loading-sublist{
+            padding-bottom: 15px;
+            text-align: center;}
+        #J_DefaultList{
+            display: none;}
+    </style>
+</head>
+<body class="index">
+<script type="text/javascript" src="../js/spin.min.js"></script>
+<!-- S 主内容 -->
+<div class="wrapper">
+    <!--<a href="http://s.m.tmall.com/m/search.htm?q=%D0%A1%C3%D74&spm=875.7403452.a2227oh.d100&click_id=%D0%A1%C3%D74&from=mallfp..m_1.2_hq">测试链接1</a>-->
+    <!--<a href="http://m.51buy.com/t/list/?keyword=%E8%80%B3%E6%9C%BA">测试链接2yixun</a>-->
+    <!-- S 内容 -->
+    <div class="content">
+        <!-- S topbar -->
+        <div id="J_Menu" class="topbar">
+            <div class="menu-overlay"></div>
+            <div class="menu">
+                <ul>
+                    <textarea class="J_template">
+                        <li class="fittings menu-trigger" id="menu-trigger-acc" rel="menu-list-acc" data-acc="">
+                            <span>所有配件</span></li>
+                        <li class="device menu-trigger" id="menu-trigger-model" rel="menu-list-model" data-sku="{{phone.sku}}"
+                            data-brand="" data-model=""><span>{{phone.style}}</span></li>
+                    </textarea>
+                </ul>
+            </div>
+            <!-- S menu-pop 配件/设备选择弹框 -->
+            <div class="menu-pop">
+                <i class="icon-arrow"></i>
+                <!-- 配件弹框 -->
+                <ul id="menu-list-acc" class="menu-list fittings-pop">
+
+                    <textarea class="J_template">
+                        <li><a class="menu-item-acc menu-item-acc-all  cur" href="pjzx.html">所有配件</a></li>
+                        {{#initAccessoresType}}
+                        <li><a href="detail.html?thirdTypeId={{thirdTypeId}}" class="brandLink menu-item-acc" data-acc-id="{{thirdTypeId}}">{{thirdTypeName}}</a></li>
+                        {{/initAccessoresType}}
+                    </textarea>
+                </ul>
+                <!-- 设备弹框 -->
+                <ul id="menu-list-model" class="menu-list device-pop" data-sel-brand="" data-sel-model="">
+                    <textarea class="J_template">
+                        {{#initBrandName}}
+                        <li class="item-brand" data-brand="{{brandName}}" data-sku="" >
+                            <div class="hd item-brand-trigger" data-brand="{{brandName}}">
+                                <h4>{{brandName}}</h4>
+                                <span class="select-sub"></span>
+                            </div>
+                            <div class="sub-list">
+                            </div>
+                        </li>
+                        {{/initBrandName}}
+                    </textarea>
+                </ul>
+            </div>
+            <!-- E menu-pop 配件/设备选择弹框 -->
+        </div>
+        <!-- E topbar -->
+        <div id="J_AccGroup">
+            <textarea class="J_template">
+                {{> accGroup}}
+            </textarea>
+        </div>
+
+        <div id="J_DefaultList">
+            <div class="pd-list clearfix">
+                <div class="pd-list-cate">
+                    <ul class="clearfix">
+                        <textarea class="J_template">
+                            {{> defaultList}}
+                        </textarea>
+                    </ul>
+                    <div class="pd-list-loading">
+                        <p class="list-loading"><span></span></p>
+                        <p class="list-nomore"><span>已到尾页</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- E 内容 -->
+    <div class="overlay dN"></div>
+    <!-- S device-anim -->
+    <div class="device-anim dN">
+        <div class="loader-con">
+            <span class="loader active"><i></i></span>
+      <span class="loader-txt">
+        正在检测型号...
+      </span>
+        </div>
+    </div>
+    <!-- E device-anim -->
+</div>
+<!-- E 主内容 -->
+
+<div id="J_view_message"></div>
+
+<script src="http://h5.m.jd.com/active/common/ping.min.js"></script>
+
+
+
+<script type="text/javascript" src="../app/index.min.js?v=1418270057000"></script>
+
+<script>
+    require(['app/index']);
+    window.onload=function(){
+        setTimeout(function(){
+            ping.init();
+        },500);
+    }
+</script>
+</body>
+</html>

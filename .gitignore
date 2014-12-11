@@ -5,6 +5,7 @@
 *.out
 *.pid
 *.zip
-.idea/  
+.idea/ 
+.idea/workspace.xml 
 dist/  
 node_modules/
