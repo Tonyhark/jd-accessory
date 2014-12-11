@@ -2738,7 +2738,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="23" y="118" width="1920" height="974" extended-state="1" />
+    <frame x="23" y="118" width="1920" height="974" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Grunt" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16943128" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
