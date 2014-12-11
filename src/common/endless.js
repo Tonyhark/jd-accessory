@@ -54,8 +54,8 @@ define('common/endless',['zepto'],function($){
 
                     var img = new Image();
                     img.onload = handler;
-                    img.onerror = handler;
-                    img.src = thisImg;
+                    //img.onerror = handler;
+                    img.src = imgSrc;
                 }
             }
         },
