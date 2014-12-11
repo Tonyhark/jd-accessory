@@ -6,12 +6,5 @@
 *.pid
 *.zip
 .idea/
-.idea/* 
-dist/  
-dist/*
+dist/
 node_modules/
-*.txt
-abc/
-abc.abc
-test/
-test2/
